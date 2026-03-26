@@ -221,9 +221,27 @@ export function compileMarkdown(textDir, outputDir = './output') {
   console.log(`📚 markdown-compiler: compilando ${mdFiles.length} arquivo(s)...`);
 
   const sections = mdFiles.map((filePath) => {
+    const basename = path.basename(filePath, '.md').toLowerCase();
     console.log(`  → ${path.basename(filePath)}`);
-    return compileFile(filePath);
+    let content = compileFile(filePath);
+
+    // Detecção por nome de arquivo: epígrafe recebe estilo centralizado/itálico
+    if (basename.includes('epigrafe') || basename.includes('epigraph')) {
+      content = [
+        `#v(2em)`,
+        `#block(width: 100%, inset: (left: 2em, right: 2em))[`,
+        `  #set text(font: "Cardo", size: 9pt, style: "italic")`,
+        `  #set par(leading: 12pt)`,
+        `  #set align(center)`,
+        content.trim(),
+        `]`,
+        `#v(1em)`,
+      ].join('\n');
+    }
+
+    return content;
   });
+
 
   const body = sections.join('\n\n// --- nova seção ---\n\n');
 
