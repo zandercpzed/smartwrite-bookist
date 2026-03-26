@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+**/.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# Build output
+output/
+dist/
+*.pdf
+*.epub
+
+# Logs
+logs/
+*.log
+
+# Ambiente local
+.env
+.env.local
+
+# Pastas protegidas (local only)
+_bkps/
+_resources/
+
+# Typst cache
+.typst/
