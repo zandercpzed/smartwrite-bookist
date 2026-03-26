@@ -85,7 +85,9 @@ function nodeToTypst(node, ctx) {
       return `\n#raw(lang: "${node.lang || ''}", block: true, """${node.value}""")\n`;
 
     case 'blockquote': {
-      const inner = node.children.map((n) => nodeToTypst(n, ctx)).join('');
+      // join('\n') garante linha em branco entre parágrafos dentro do quote
+      // (em Typst, \n simples = espaço; \n\n = novo parágrafo)
+      const inner = node.children.map((n) => nodeToTypst(n, ctx)).join('\n');
       return `\n#quote[\n${inner}]\n`;
     }
 
@@ -194,23 +196,67 @@ function compileFile(filePath) {
 }
 
 // ---------------------------------------------------------------------------
-// Função principal exportada
+// Helper: bloco de epígrafe
 // ---------------------------------------------------------------------------
+
+/**
+ * Envolve o conteúdo compilado de uma epígrafe no bloco Typst correto:
+ * Cardo 9pt, itálico, centralizado, com recuo lateral.
+ */
+function buildEpigraphBlock(content) {
+  return [
+    `#v(2em)`,
+    `#block(width: 100%, inset: (left: 2em, right: 2em))[`,
+    `  #set text(font: "Cardo", size: 9pt, style: "italic")`,
+    `  #set par(leading: 12pt)`,
+    `  #set align(center)`,
+    content.trim(),
+    `]`,
+    `#v(1em)`,
+  ].join('\n');
+}
+
+
+/**
+ * Compila um único arquivo .md e grava o resultado em um .typ de destino.
+ * Usado para rosto.typ e colofao.typ quando os arquivos .md existem.
+ * @param {string} srcPath - Caminho do arquivo .md fonte
+ * @param {string} destPath - Caminho do arquivo .typ de saída
+ * @returns {string} - Conteúdo Typst gerado
+ */
+export function compileSpecialFile(srcPath, destPath) {
+  if (!fs.existsSync(srcPath)) {
+    throw new Error(`❌ markdown-compiler: arquivo especial não encontrado: ${srcPath}`);
+  }
+  const basename = path.basename(srcPath, '.md').toLowerCase();
+  let content = compileFile(srcPath);
+
+  // Aplicar wrappers por tipo
+  if (basename.includes('epigrafe') || basename.includes('epigraph')) {
+    content = buildEpigraphBlock(content);
+  }
+
+  fs.mkdirSync(path.dirname(destPath), { recursive: true });
+  fs.writeFileSync(destPath, content, 'utf-8');
+  console.log(`✅ markdown-compiler: ${path.basename(destPath)} gerado de ${path.basename(srcPath)}`);
+  return content;
+}
 
 /**
  * Compila todos os arquivos .md de uma pasta em ordem léxica.
  * @param {string} textDir - Pasta com os arquivos .md
  * @param {string} outputDir - Onde gravar livro-body.typ
+ * @param {string[]} [exclude=[]] - Basenames a excluir (arquivos especiais já compilados)
  * @returns {string} - Conteúdo Typst completo do corpo do livro
  */
-export function compileMarkdown(textDir, outputDir = './output') {
+export function compileMarkdown(textDir, outputDir = './output', exclude = []) {
   if (!fs.existsSync(textDir)) {
     throw new Error(`❌ markdown-compiler: pasta não encontrada: ${textDir}`);
   }
 
   const mdFiles = fs
     .readdirSync(textDir)
-    .filter((f) => f.endsWith('.md'))
+    .filter((f) => f.endsWith('.md') && !exclude.includes(f))
     .sort()
     .map((f) => path.join(textDir, f));
 

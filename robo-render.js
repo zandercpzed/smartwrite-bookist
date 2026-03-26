@@ -16,7 +16,8 @@ import { parseIdml } from './src/idml-parser.js';
 import { mapStyles } from './src/style-mapper.js';
 import { writeTheme, generatePageSetup } from './src/theme-generator.js';
 
-import { compileMarkdown } from './src/markdown-compiler.js';
+import { compileMarkdown, compileSpecialFile } from './src/markdown-compiler.js';
+
 import { readBookMeta } from './src/book-meta-parser.js';
 import { writeBookStructure } from './src/book-assembler.js';
 import { extractIdml } from './src/idml-extractor.js';
@@ -146,12 +147,43 @@ async function runRender(options) {
 
   // --- Etapa 4: Compilação do Markdown ---
   console.log('📝 [4/5] Compilando Markdown → Typst...');
-  compileMarkdown(textDir, outputDir);
 
-  // Gera estrutura editorial (rosto + colôfão)
-  if (metaFound) {
+  // --- Detectar arquivos especiais na pasta de textos ---
+  const allMdFiles = fs.readdirSync(textDir).filter((f) => f.endsWith('.md'));
+  const excludedFromBody = [];
+
+  // Folha de rosto: secao-00_folha_de_face.md (ou similar)
+  const rostoFile = allMdFiles.find((f) => /folha.de.face/i.test(f) || /folha_de_face/i.test(f));
+  if (rostoFile) {
+    const srcPath = path.join(textDir, rostoFile);
+    const destPath = path.join(outputDir, 'rosto.typ');
+    compileSpecialFile(srcPath, destPath);
+    excludedFromBody.push(rostoFile);
+  } else if (metaFound) {
+    // Fallback: gera rosto a partir do book.yaml
     writeBookStructure(meta, outputDir, mapped.page);
   }
+
+  // Colofão: *colofao*.md ou *colofão*.md
+  const colofaoFile = allMdFiles.find((f) => /colof[aã]o/i.test(f));
+  if (colofaoFile) {
+    const srcPath = path.join(textDir, colofaoFile);
+    const destPath = path.join(outputDir, 'colofao.typ');
+    compileSpecialFile(srcPath, destPath);
+    excludedFromBody.push(colofaoFile);
+  } else if (metaFound && !rostoFile) {
+    // writeBookStructure já foi chamado acima se não havia rosto; não chamar duas vezes
+    // (book-assembler gera rosto + colofao juntos)
+  } else if (metaFound) {
+    // Rosto veio de .md mas colofão não — gera só colofão
+    const { generateColofao, writeBookStructure: wbs } = await import('./src/book-assembler.js');
+    const colofaoContent = generateColofao(meta, mapped.page);
+    fs.writeFileSync(path.join(outputDir, 'colofao.typ'), colofaoContent, 'utf-8');
+    console.log('✅ book-assembler: colofao.typ gerado (fallback)');
+  }
+
+  // Compila o corpo principal (excluindo arquivos especiais)
+  compileMarkdown(textDir, outputDir, excludedFromBody);
 
   // Monta o livro.typ final (rosto + sumário + corpo + colôfão)
   const bookTypPath = mountBook(outputDir, vol, parsed.paragraphStyles, metaFound, mapped.page, mapped, metaFound ? meta : null);
