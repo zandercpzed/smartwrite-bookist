@@ -185,8 +185,12 @@ async function runRender(options) {
   // Compila o corpo principal (excluindo arquivos especiais)
   compileMarkdown(textDir, outputDir, excludedFromBody);
 
+  // hasStructure = tem rosto ou colofão (seja por book.yaml ou por .md especial)
+  const hasStructure = metaFound || !!rostoFile || !!colofaoFile;
+
   // Monta o livro.typ final (rosto + sumário + corpo + colôfão)
-  const bookTypPath = mountBook(outputDir, vol, parsed.paragraphStyles, metaFound, mapped.page, mapped, metaFound ? meta : null);
+  const bookTypPath = mountBook(outputDir, vol, parsed.paragraphStyles, hasStructure, mapped.page, mapped, metaFound ? meta : null);
+
 
   console.log(`   → livro.typ montado em ${bookTypPath}`);
 
@@ -212,18 +216,25 @@ async function runRender(options) {
 
 /**
  * Resolve a pasta da coleção (onde ficam os volumes).
- * Tenta, em ordem: FASE I → FASE II → FASE III → pai do repositório.
+ * Ordem de busca: _temp (work-in-progress) → FASE I → FASE II → FASE III → rootDir
  */
 function resolveCollectionDir(rootDir) {
   const parentDir = path.dirname(rootDir);
-  const faseDirs = ['FASE I', 'FASE II', 'FASE III'];
-  for (const fase of faseDirs) {
-    const p = path.join(parentDir, fase);
-    if (fs.existsSync(p) && fs.statSync(p).isDirectory()) {
-      return p; // Retorna a primeira FASE que existir — será buscado recursivamente em todas
-    }
+
+  // _temp: workspace ativo dentro do próprio robots dir
+  const tempDir = path.join(rootDir, '_temp');
+  if (fs.existsSync(tempDir) && fs.statSync(tempDir).isDirectory()) {
+    // verifica se há volumes dentro de _temp
+    const entries = fs.readdirSync(tempDir).filter((f) => fs.statSync(path.join(tempDir, f)).isDirectory());
+    if (entries.length > 0) return tempDir;
   }
-  // Fallback: busca na raiz do projeto
+
+  // FASE I, II, III no diretório pai
+  for (const fase of ['FASE I', 'FASE II', 'FASE III']) {
+    const p = path.join(parentDir, fase);
+    if (fs.existsSync(p) && fs.statSync(p).isDirectory()) return p;
+  }
+
   return rootDir;
 }
 

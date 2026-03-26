@@ -219,7 +219,7 @@ function buildEpigraphBlock(content) {
 
 /**
  * Compila um único arquivo .md e grava o resultado em um .typ de destino.
- * Usado para rosto.typ e colofao.typ quando os arquivos .md existem.
+ * Suporta arquivos especiais: folha de face (tags [TITLE]/[SUBTITLE]) e epígrafe.
  * @param {string} srcPath - Caminho do arquivo .md fonte
  * @param {string} destPath - Caminho do arquivo .typ de saída
  * @returns {string} - Conteúdo Typst gerado
@@ -229,11 +229,16 @@ export function compileSpecialFile(srcPath, destPath) {
     throw new Error(`❌ markdown-compiler: arquivo especial não encontrado: ${srcPath}`);
   }
   const basename = path.basename(srcPath, '.md').toLowerCase();
-  let content = compileFile(srcPath);
+  let content;
 
-  // Aplicar wrappers por tipo
-  if (basename.includes('epigrafe') || basename.includes('epigraph')) {
-    content = buildEpigraphBlock(content);
+  if (basename.includes('folha') || basename.includes('face') || basename.includes('rosto')) {
+    // Folha de face: converte tags customizadas [TITLE]/[SUBTITLE] + layout centralizado
+    content = compileFolhaFace(srcPath);
+  } else {
+    content = compileFile(srcPath);
+    if (basename.includes('epigrafe') || basename.includes('epigraph')) {
+      content = buildEpigraphBlock(content);
+    }
   }
 
   fs.mkdirSync(path.dirname(destPath), { recursive: true });
@@ -241,6 +246,52 @@ export function compileSpecialFile(srcPath, destPath) {
   console.log(`✅ markdown-compiler: ${path.basename(destPath)} gerado de ${path.basename(srcPath)}`);
   return content;
 }
+
+/**
+ * Compila a Folha de Face — lê o .md bruto e converte tags [TITLE]/[SUBTITLE]
+ * para marcação Typst, preservando o layout editorial vertical centralizado.
+ */
+function compileFolhaFace(filePath) {
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  const lines = raw.split('\n');
+  const typstLines = ['// rosto.typ — gerado de ' + path.basename(filePath), ''];
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) {
+      typstLines.push('#v(0.4em)');
+      continue;
+    }
+
+    // Tags customizadas
+    const titleMatch = trimmed.match(/^\[TITLE\](.+)\[\/TITLE\]$/);
+    const subtitleMatch = trimmed.match(/^\[SUBTITLE\](.+)\[\/SUBTITLE\]$/);
+
+    if (titleMatch) {
+      typstLines.push(`#text(size: 28pt, weight: "regular")[${esc(titleMatch[1])}]`);
+    } else if (subtitleMatch) {
+      typstLines.push(`#v(0.5cm)`);
+      typstLines.push(`#text(size: 11pt, style: "italic")[${esc(subtitleMatch[1])}]`);
+    } else {
+      typstLines.push(`#text(size: 8pt)[${esc(trimmed)}]`);
+    }
+  }
+
+  // Envolve tudo em align(center) com espaçamento flexível
+  return [
+    '#align(center)[',
+    '#v(2cm)',
+    ...typstLines,
+    '#v(1fr)',
+    ']',
+  ].join('\n');
+}
+
+/** Escapa caracteres especiais Typst em strings literais */
+function esc(str) {
+  return String(str || '').replace(/\\/g, '\\\\').replace(/#/g, '\\#').replace(/@/g, '\\@');
+}
+
 
 /**
  * Compila todos os arquivos .md de uma pasta em ordem léxica.
