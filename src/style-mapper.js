@@ -19,10 +19,11 @@ const ptToCm = (pt) => (pt != null ? Math.round((pt / 28.3465) * 10000) / 10000 
 const ptToEm = (pt, baseFontSizePt) =>
   pt != null && baseFontSizePt ? Math.round((pt / baseFontSizePt) * 1000) / 1000 : null;
 
-/** Converte alinhamento Adobe → Typst */
+/** Converte alinhamento Adobe → { align: string, justify: bool } */
 const mapJustification = (value) => {
   const map = {
     LeftAlign: 'left',
+    LeftJustified: 'left',
     RightAlign: 'right',
     CenterAlign: 'center',
     FullyJustified: 'justify',
@@ -119,7 +120,7 @@ export function mapStyles(parsed) {
           style.firstLineIndent != null
             ? `${ptToEm(style.firstLineIndent, fontSizePt)}em`
             : null,
-        align: mapJustification(style.justification),
+        align: mapJustification(style.justification), // 'left', 'justify', 'center', etc. ou null
         fontFamily: style.fontFamily,
         fontStyle: style.fontStyle,
       },

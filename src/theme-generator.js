@@ -43,25 +43,49 @@ export function generateThemeContent(mapped) {
   lines.push(')');
   lines.push('');
 
-  // Estilos por role semântico
+  // Estilos por role semântico — prioriza o estilo com mais dados (mais campos typst não-nulos)
   const byRole = {};
+
+  /**
+   * Conta quantos campos tipográficos relevantes são não-nulos num estilo.
+   * Usado para priorizar o estilo "mais completo" quando vários têm o mesmo role.
+   */
+  function typstScore(style) {
+    const t = style.typst;
+    return (t.fontSize != null ? 1 : 0)
+      + (t.leading != null ? 1 : 0)
+      + (t.fontFamily != null ? 1 : 0)
+      + (t.firstLineIndent && t.firstLineIndent !== '0em' ? 1 : 0)
+      + (t.align != null ? 1 : 0);
+  }
+
   for (const style of mappedStyles) {
-    if (style.role) byRole[style.role] = style;
+    if (!style.role) continue;
+    const existing = byRole[style.role];
+    if (!existing || typstScore(style) > typstScore(existing)) {
+      byRole[style.role] = style;
+    }
   }
 
   // Corpo do texto (set global)
+  // IMPORTANTE: body sempre emite as regras se houver dados — independente do align
   if (byRole.body) {
     const s = byRole.body.typst;
     lines.push('// --- Texto Corrido (body) ---');
 
+    // #set text — sempre emite se tiver font ou size
     const textArgs = [];
     if (s.fontFamily) textArgs.push(`font: "${s.fontFamily}"`);
     if (s.fontSize) textArgs.push(`size: ${s.fontSize}`);
     if (textArgs.length) lines.push(`#set text(${textArgs.join(', ')})`);
 
+    // #set par — emite todos os valores relevantes individualmente
     const parArgs = [];
     if (s.leading && s.leading !== '0pt') parArgs.push(`leading: ${s.leading}`);
-    if (s.firstLineIndent && s.firstLineIndent !== '0em') parArgs.push(`first-line-indent: (amount: ${s.firstLineIndent}, all: false)`);
+    if (s.firstLineIndent && s.firstLineIndent !== '0em' && s.firstLineIndent !== 'nullem') {
+      parArgs.push(`first-line-indent: (amount: ${s.firstLineIndent}, all: false)`);
+    }
+    // justify: true para FullyJustified, false para Left (default Typst é false)
     if (s.align === 'justify') parArgs.push(`justify: true`);
     if (parArgs.length) lines.push(`#set par(${parArgs.join(', ')})`);
     lines.push('');
