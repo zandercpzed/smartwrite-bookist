@@ -51,6 +51,7 @@ const SEMANTIC_MAP = [
   { pattern: /body text:citation$/i, role: 'blockquote' },
   { pattern: /estilos de documento:caption$/i, role: 'caption' },
   { pattern: /estilos de documento:page header$/i, role: 'pageHeader' },
+  { pattern: /body text:epigraph and dedication$/i, role: 'epigraph' },
   // Fallbacks genéricos (caso o DA renomeie estilos)
   { pattern: /^(body|corpo|body text|texto corrido|normal)$/i, role: 'body' },
   { pattern: /^(heading 1|cabeçalho 1|título 1|h1)$/i, role: 'heading1' },

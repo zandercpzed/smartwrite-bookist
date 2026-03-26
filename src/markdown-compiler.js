@@ -90,7 +90,9 @@ function nodeToTypst(node, ctx) {
     }
 
     case 'thematicBreak':
-      return '\n#line(length: 100%)\n';
+      // Linha fina 0.25pt, centralizada, com margem lateral (~5cm da borda da coluna)
+      return '\n#v(0.8em)\n#pad(x: 2cm)[#line(length: 100%, stroke: 0.25pt)]\n#v(0.8em)\n';
+
 
     case 'list': {
       const items = node.children

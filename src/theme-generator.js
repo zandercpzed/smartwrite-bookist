@@ -107,13 +107,13 @@ export function generateThemeContent(mapped, meta = null) {
       if (s.below && s.below !== 'nullem' && s.below !== '0em') blockArgs.push(`below: ${s.below}`);
       if (blockArgs.length) lines.push(`  set block(${blockArgs.join(', ')})`);
 
-      // Conteúdo: H1 com pagebreak fraco antes + centro; outros normal
+      // Conteúdo: H1 com pagebreak para página ímpar (recto) + centro; outros normal
       if (level === 1) {
         if (s.align === 'center') {
-          lines.push('  pagebreak(weak: true)');
+          lines.push('  pagebreak(to: "odd")');
           lines.push('  align(center, it.body)');
         } else {
-          lines.push('  pagebreak(weak: true)');
+          lines.push('  pagebreak(to: "odd")');
           lines.push('  it.body');
         }
       } else if (s.align === 'center') {
@@ -150,8 +150,24 @@ export function generateThemeContent(mapped, meta = null) {
     lines.push('');
   }
 
+  // Epígrafe (Epigraph and Dedication do IDML)
+  if (byRole.epigraph) {
+    const s = byRole.epigraph.typst;
+    const epArgs = [];
+    if (s.fontFamily) epArgs.push(`font: "${s.fontFamily}"`);
+    if (s.fontSize) epArgs.push(`size: ${s.fontSize}`);
+    lines.push('// --- Epígrafe ---');
+    if (epArgs.length) {
+      lines.push(`// Tipografia IDML: ${epArgs.join(', ')}, style: "italic", align: center`);
+    }
+    lines.push(`// Uso no Typst: #block(inset: (left: 2em, right: 2em))[#set text(style: "italic")\\`);
+    lines.push(`//   <texto da epígrafe>]`);
+    lines.push('');
+  }
+
   return lines.join('\n');
 }
+
 
 /**
  * Gera APENAS o bloco #set page para ser emitido diretamente no documento raiz (livro.typ).
