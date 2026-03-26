@@ -30,40 +30,6 @@ export function generateThemeContent(mapped, meta = null) {
 
   const titleForHeader = (meta && meta.title) ? meta.title.replace(/"/g, '\\"') : '';
 
-  // Configuração de página
-  lines.push('// --- Página ---');
-  lines.push(`#set page(`);
-  lines.push(`  width: ${page.width},`);
-  lines.push(`  height: ${page.height},`);
-  lines.push(`  margin: (`);
-  lines.push(`    top: ${page.marginTop},`);
-  lines.push(`    bottom: ${page.marginBottom},`);
-  lines.push(`    inside: ${page.marginLeft},`);
-  lines.push(`    outside: ${page.marginRight},`);
-  lines.push(`  ),`);
-  lines.push(`  binding: left,`);
-  lines.push(`  numbering: "1",`);
-
-  if (titleForHeader) {
-    // Cabeçalho alternado: título na recto, heading corrente na verso
-    lines.push('  header: context {');
-    lines.push('    let p = counter(page).get().first()');
-    lines.push('    set text(size: 6pt)');
-    lines.push('    if calc.odd(p) {');
-    lines.push(`      align(right)["${titleForHeader}"]`);
-    lines.push('    } else {');
-    lines.push('      let hs = query(selector(heading).before(here()))');
-    lines.push('      if hs.len() > 0 { align(left)[#hs.last().body] }');
-    lines.push('    }');
-    lines.push('  },');
-    // Rodapé: número de página centralizado
-    lines.push('  footer: context {');
-    lines.push('    set text(size: 7pt)');
-    lines.push('    align(center)[#counter(page).display()]');
-    lines.push('  },');
-  }
-
-  lines.push(')');
   lines.push('');
 
 
@@ -188,10 +154,66 @@ export function generateThemeContent(mapped, meta = null) {
 }
 
 /**
+ * Gera APENAS o bloco #set page para ser emitido diretamente no documento raiz (livro.typ).
+ * IMPORTANTE: #set page dentro de #include NÃO afeta o documento pai no Typst.
+ * Por isso este bloco deve ser inserido pelo mountBook() diretamente no livro.typ.
+ *
+ * @param {{ page: object }} mapped - objeto com page {width, height, margins}
+ * @param {string|null} meta - BookMeta (para header com título)
+ * @returns {string} - string com o bloco #set page completo
+ */
+export function generatePageSetup(mapped, meta = null) {
+  const { page } = mapped;
+  const titleForHeader = (meta && meta.title) ? meta.title.replace(/"/g, '\\"') : '';
+  const lines = [];
+
+  lines.push('// --- Página (único #set page — emitido diretamente no livro.typ) ---');
+  lines.push(`#set page(`);
+  lines.push(`  width: ${page.width},`);
+  lines.push(`  height: ${page.height},`);
+  lines.push(`  margin: (`);
+  lines.push(`    top: ${page.marginTop},`);
+  lines.push(`    bottom: ${page.marginBottom},`);
+  lines.push(`    inside: ${page.marginLeft},`);
+  lines.push(`    outside: ${page.marginRight},`);
+  lines.push(`  ),`);
+  lines.push(`  binding: left,`);
+  lines.push('  numbering: none,');
+
+  if (titleForHeader) {
+    lines.push('  header: context {');
+    lines.push('    let s = page-section.get()');
+    lines.push('    if s == "rosto" or s == "sumario" { none }');
+    lines.push('    else {');
+    lines.push('      let p = counter(page).get().first()');
+    lines.push('      set text(size: 6pt)');
+    lines.push('      if calc.odd(p) {');
+    lines.push(`        align(right)["${titleForHeader}"]`);
+    lines.push('      } else {');
+    lines.push('        let hs = query(selector(heading).before(here()))');
+    lines.push('        if hs.len() > 0 { align(left)[#hs.last().body] }');
+    lines.push('      }');
+    lines.push('    }');
+    lines.push('  },');
+    lines.push('  footer: context {');
+    lines.push('    let s = page-section.get()');
+    lines.push('    if s == "rosto" { none }');
+    lines.push('    else {');
+    lines.push('      set text(size: 7pt)');
+    lines.push('      align(center)[#counter(page).display()]');
+    lines.push('    }');
+    lines.push('  },');
+  }
+
+  lines.push(')');
+  return lines.join('\n');
+}
+
+/**
  * Grava o theme.typ no diretório output/ e retorna o caminho.
  * @param {{ mappedStyles: object[], page: object }} mapped
  * @param {string} outputDir - Diretório onde gravar (default: ./output)
- * @param {object} [meta] - BookMeta opcional (ativa cabeçalho/rodapé)
+ * @param {object} [meta] - BookMeta opcional
  * @returns {string} - Caminho do arquivo gerado
  */
 export function writeTheme(mapped, outputDir = './output', meta = null) {
@@ -202,3 +224,4 @@ export function writeTheme(mapped, outputDir = './output', meta = null) {
   console.log(`✅ theme-generator: theme.typ gerado em ${outPath}`);
   return outPath;
 }
+

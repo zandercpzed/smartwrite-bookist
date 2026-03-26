@@ -14,7 +14,8 @@ import fs from 'fs';
 import { execFileSync } from 'child_process';
 import { parseIdml } from './src/idml-parser.js';
 import { mapStyles } from './src/style-mapper.js';
-import { writeTheme } from './src/theme-generator.js';
+import { writeTheme, generatePageSetup } from './src/theme-generator.js';
+
 import { compileMarkdown } from './src/markdown-compiler.js';
 import { readBookMeta } from './src/book-meta-parser.js';
 import { writeBookStructure } from './src/book-assembler.js';
@@ -153,7 +154,8 @@ async function runRender(options) {
   }
 
   // Monta o livro.typ final (rosto + sumário + corpo + colôfão)
-  const bookTypPath = mountBook(outputDir, vol, parsed.paragraphStyles, metaFound, mapped.page);
+  const bookTypPath = mountBook(outputDir, vol, parsed.paragraphStyles, metaFound, mapped.page, mapped, metaFound ? meta : null);
+
   console.log(`   → livro.typ montado em ${bookTypPath}`);
 
   // --- Etapa 5: Renderização ---
@@ -245,12 +247,8 @@ function sanitizeVolName(vol) {
  * @param {Array} paragraphStyles
  * @param {boolean} hasBookMeta
  */
-function mountBook(outputDir, volTitle, paragraphStyles, hasBookMeta = false, page = null) {
+function mountBook(outputDir, volTitle, paragraphStyles, hasBookMeta = false, page = null, mapped = null, meta = null) {
   const bookPath = path.join(outputDir, 'livro.typ');
-
-  // Dimensões do template (extraídas do IDML) — preservadas em todos os set page
-  const w = page?.width || '12cm';
-  const h = page?.height || '18cm';
 
   const sections = [];
 
@@ -259,22 +257,33 @@ function mountBook(outputDir, volTitle, paragraphStyles, hasBookMeta = false, pa
   sections.push(`// NÃO EDITE ESTE ARQUIVO MANUALMENTE.`);
   sections.push(`// ============================================================`);
   sections.push(``);
+  // State global — deve ser declarado ANTES do #include theme.typ
+  sections.push(`#let page-section = state("page-section", "rosto")`);
+  sections.push(``);
+  // #set page DEVE ser emitido aqui no documento raiz — #set page em #include não afeta o pai
+  if (mapped) {
+    sections.push(generatePageSetup(mapped, meta));
+    sections.push(``);
+  }
   sections.push(`#include "theme.typ"`);
+
   sections.push(``);
   sections.push(`// CJK fallback (Pinyin, Hanzi, Kanji)`);
   sections.push(`#set text(fallback: true)`);
   sections.push(``);
 
   if (hasBookMeta) {
-    // Folha de rosto (sem numeração, sem cabeçalho)
+    // Folha de rosto — muda section para "rosto" (oculta header/footer, sem numeração)
     sections.push(`// --- Folha de Rosto ---`);
+    sections.push(`#page-section.update("rosto")`);
     sections.push(`#include "rosto.typ"`);
     sections.push(`#pagebreak(to: "odd")`);
     sections.push(``);
 
-    // Sumário automático — mantém dimensões do template
+    // Sumário — muda para "sumario" (numeração romana, sem header)
     sections.push(`// --- Sumário ---`);
-    sections.push(`#set page(width: ${w}, height: ${h}, header: none, numbering: "i")`);
+    sections.push(`#page-section.update("sumario")`);
+    sections.push(`#counter(page).update(1)`);
     sections.push(`#outline(`);
     sections.push(`  title: "Sumário",`);
     sections.push(`  depth: 2,`);
@@ -282,8 +291,8 @@ function mountBook(outputDir, volTitle, paragraphStyles, hasBookMeta = false, pa
     sections.push(`)`);
     sections.push(`#pagebreak(to: "odd")`);
     sections.push(``);
-    // Reativa numeração arábica para o corpo — mantém dimensões
-    sections.push(`#set page(width: ${w}, height: ${h}, numbering: "1")`);
+    // Corpo — muda para "corpo" (numeração arábica, header alternado)
+    sections.push(`#page-section.update("corpo")`);
     sections.push(`#counter(page).update(1)`);
     sections.push(``);
   }

@@ -44,10 +44,7 @@ export function generateRosto(meta, page = null) {
 
   lines.push('// rosto.typ — Gerado automaticamente pelo Smartwrite Bookist');
   lines.push('// NÃO EDITE MANUALMENTE.');
-  lines.push('');
-
-  // Preserva dimensões do template — sem width/height o Typst reseta para A4
-  lines.push(`#set page(width: ${w}, height: ${h}, header: none, footer: none, numbering: none)`);
+  lines.push('// Nota: #set page é gerenciado pelo theme.typ via page-section state');
   lines.push('');
 
   // Layout vertical: tudo centralizado com espaçamento proporcional
@@ -130,10 +127,7 @@ export function generateColofao(meta, page = null) {
 
   lines.push('// colofao.typ — Gerado automaticamente pelo Smartwrite Bookist');
   lines.push('// NÃO EDITE MANUALMENTE.');
-  lines.push('');
-
-  // Preserva dimensões do template
-  lines.push(`#set page(width: ${w}, height: ${h}, header: none)`);
+  lines.push('// Nota: #set page é gerenciado pelo theme.typ via page-section state');
   lines.push('');
 
   // Posiciona o colofão na parte inferior da página
