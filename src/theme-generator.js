@@ -17,7 +17,7 @@ import path from 'path';
  * @param {{ mappedStyles: object[], page: object }} mapped
  * @returns {string}
  */
-export function generateThemeContent(mapped) {
+export function generateThemeContent(mapped, meta = null) {
   const { mappedStyles, page } = mapped;
   const lines = [];
 
@@ -27,6 +27,8 @@ export function generateThemeContent(mapped) {
   lines.push('// Fonte de verdade: template miolo.idml');
   lines.push('// ============================================================');
   lines.push('');
+
+  const titleForHeader = (meta && meta.title) ? meta.title.replace(/"/g, '\\"') : '';
 
   // Configuração de página
   lines.push('// --- Página ---');
@@ -40,8 +42,30 @@ export function generateThemeContent(mapped) {
   lines.push(`    outside: ${page.marginRight},`);
   lines.push(`  ),`);
   lines.push(`  binding: left,`);
+  lines.push(`  numbering: "1",`);
+
+  if (titleForHeader) {
+    // Cabeçalho alternado: título na recto, heading corrente na verso
+    lines.push('  header: context {');
+    lines.push('    let p = counter(page).get().first()');
+    lines.push('    set text(size: 6pt)');
+    lines.push('    if calc.odd(p) {');
+    lines.push(`      align(right)["${titleForHeader}"]`);
+    lines.push('    } else {');
+    lines.push('      let hs = query(selector(heading).before(here()))');
+    lines.push('      if hs.len() > 0 { align(left)[#hs.last().body] }');
+    lines.push('    }');
+    lines.push('  },');
+    // Rodapé: número de página centralizado
+    lines.push('  footer: context {');
+    lines.push('    set text(size: 7pt)');
+    lines.push('    align(center)[#counter(page).display()]');
+    lines.push('  },');
+  }
+
   lines.push(')');
   lines.push('');
+
 
   // Estilos por role semântico — prioriza o estilo com mais dados (mais campos typst não-nulos)
   const byRole = {};
@@ -145,10 +169,11 @@ export function generateThemeContent(mapped) {
  * Grava o theme.typ no diretório output/ e retorna o caminho.
  * @param {{ mappedStyles: object[], page: object }} mapped
  * @param {string} outputDir - Diretório onde gravar (default: ./output)
+ * @param {object} [meta] - BookMeta opcional (ativa cabeçalho/rodapé)
  * @returns {string} - Caminho do arquivo gerado
  */
-export function writeTheme(mapped, outputDir = './output') {
-  const content = generateThemeContent(mapped);
+export function writeTheme(mapped, outputDir = './output', meta = null) {
+  const content = generateThemeContent(mapped, meta);
   const outPath = path.join(outputDir, 'theme.typ');
   fs.mkdirSync(outputDir, { recursive: true });
   fs.writeFileSync(outPath, content, 'utf-8');

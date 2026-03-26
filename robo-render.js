@@ -16,6 +16,8 @@ import { parseIdml } from './src/idml-parser.js';
 import { mapStyles } from './src/style-mapper.js';
 import { writeTheme } from './src/theme-generator.js';
 import { compileMarkdown } from './src/markdown-compiler.js';
+import { readBookMeta } from './src/book-meta-parser.js';
+import { writeBookStructure } from './src/book-assembler.js';
 
 // ---------------------------------------------------------------------------
 // CLI Setup
@@ -82,6 +84,11 @@ async function runRender(options) {
   fs.mkdirSync(outputDir, { recursive: true });
   console.log(`   Output: ${outputDir}\n`);
 
+  // --- Etapa 0: Metadados do Volume ---
+  console.log('📖 [0/5] Lendo metadados do volume (book.yaml)...');
+  const { meta, found: metaFound } = readBookMeta(volDir);
+  if (!metaFound) console.log('   → book.yaml ausente: PDF sem rosto/colôfão');
+
   // --- Etapa 1: Extração IDML ---
   console.log('🔍 [1/5] Extraindo estilos do IDML...');
   const parsed = await parseIdml(idmlPath);
@@ -111,14 +118,20 @@ async function runRender(options) {
 
   // --- Etapa 3: Geração do Tema ---
   console.log('🎨 [3/5] Gerando theme.typ...');
-  const themePath = writeTheme(mapped, outputDir);
+  // Passa meta para ativar cabeçalho/rodapé quando book.yaml existir
+  const themePath = writeTheme(mapped, outputDir, metaFound ? meta : null);
 
   // --- Etapa 4: Compilação do Markdown ---
   console.log('📝 [4/5] Compilando Markdown → Typst...');
   compileMarkdown(textDir, outputDir);
 
-  // Monta o livro.typ final
-  const bookTypPath = mountBook(outputDir, vol, parsed.paragraphStyles);
+  // Gera estrutura editorial (rosto + colôfão)
+  if (metaFound) {
+    writeBookStructure(meta, outputDir);
+  }
+
+  // Monta o livro.typ final (rosto + sumário + corpo + colôfão)
+  const bookTypPath = mountBook(outputDir, vol, parsed.paragraphStyles, metaFound);
   console.log(`   → livro.typ montado em ${bookTypPath}`);
 
   // --- Etapa 5: Renderização ---
@@ -203,33 +216,68 @@ function sanitizeVolName(vol) {
 }
 
 /**
- * Monta o livro.typ final unindo theme + body.
- * Sprint 2 adicionará rosto, TOC e colofão.
+ * Monta o livro.typ final.
+ * Sprint 2: inclui rosto, sumário (#outline) e colofão se book.yaml existir.
+ * @param {string} outputDir
+ * @param {string} volTitle
+ * @param {Array} paragraphStyles
+ * @param {boolean} hasBookMeta
  */
-function mountBook(outputDir, volTitle, paragraphStyles) {
+function mountBook(outputDir, volTitle, paragraphStyles, hasBookMeta = false) {
   const bookPath = path.join(outputDir, 'livro.typ');
 
-  // Detecta a fonte principal do body para CJK fallback
-  const bodyStyle = paragraphStyles.find((s) => /^(body|corpo|texto corrido|normal)$/i.test(s.name));
-  const bodyFont = bodyStyle?.fontFamily || 'Linux Libertine';
+  const sections = [];
 
-  const content = `// ============================================================
-// livro.typ — Gerado automaticamente pelo Smartwrite Bookist
-// NÃO EDITE ESTE ARQUIVO MANUALMENTE.
-// ============================================================
+  sections.push(`// ============================================================`);
+  sections.push(`// livro.typ — Gerado automaticamente pelo Smartwrite Bookist`);
+  sections.push(`// NÃO EDITE ESTE ARQUIVO MANUALMENTE.`);
+  sections.push(`// ============================================================`);
+  sections.push(``);
+  sections.push(`#import "theme.typ": *`);
+  sections.push(``);
+  sections.push(`// CJK fallback (Pinyin, Hanzi, Kanji)`);
+  sections.push(`#set text(fallback: true)`);
+  sections.push(``);
 
-#import "theme.typ": *
+  if (hasBookMeta) {
+    // Folha de rosto (sem numeração, sem cabeçalho)
+    sections.push(`// --- Folha de Rosto ---`);
+    sections.push(`#include "rosto.typ"`);
+    sections.push(`#pagebreak(to: "odd")`);
+    sections.push(``);
 
-// CJK fallback (Pinyin, Hanzi, Kanji)
-#set text(fallback: true)
+    // Sumário automático
+    sections.push(`// --- Sumário ---`);
+    sections.push(`#set page(header: none, numbering: "i")`);
+    sections.push(`#outline(`);
+    sections.push(`  title: "Sumário",`);
+    sections.push(`  depth: 2,`);
+    sections.push(`  indent: 1em,`);
+    sections.push(`)`);
+    sections.push(`#pagebreak(to: "odd")`);
+    sections.push(``);
+    // Reativa numeração arábica para o corpo
+    sections.push(`#set page(numbering: "1")`);
+    sections.push(`#counter(page).update(1)`);
+    sections.push(``);
+  }
 
-// Corpo do livro
-#include "livro-body.typ"
-`;
+  // Corpo do livro
+  sections.push(`// --- Corpo ---`);
+  sections.push(`#include "livro-body.typ"`);
+  sections.push(``);
 
-  fs.writeFileSync(bookPath, content, 'utf-8');
+  if (hasBookMeta) {
+    // Colofão
+    sections.push(`// --- Colofão ---`);
+    sections.push(`#pagebreak()`);
+    sections.push(`#include "colofao.typ"`);
+  }
+
+  fs.writeFileSync(bookPath, sections.join('\n'), 'utf-8');
   return bookPath;
 }
+
 
 function renderPdf(bookTypPath, outputDir, vol) {
   const pdfName = `${sanitizeVolName(vol)}_miolo.pdf`;
