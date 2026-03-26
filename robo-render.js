@@ -149,7 +149,7 @@ async function runRender(options) {
 
   // Gera estrutura editorial (rosto + colôfão)
   if (metaFound) {
-    writeBookStructure(meta, outputDir);
+    writeBookStructure(meta, outputDir, mapped.page);
   }
 
   // Monta o livro.typ final (rosto + sumário + corpo + colôfão)
@@ -259,7 +259,7 @@ function mountBook(outputDir, volTitle, paragraphStyles, hasBookMeta = false, pa
   sections.push(`// NÃO EDITE ESTE ARQUIVO MANUALMENTE.`);
   sections.push(`// ============================================================`);
   sections.push(``);
-  sections.push(`#import "theme.typ": *`);
+  sections.push(`#include "theme.typ"`);
   sections.push(``);
   sections.push(`// CJK fallback (Pinyin, Hanzi, Kanji)`);
   sections.push(`#set text(fallback: true)`);

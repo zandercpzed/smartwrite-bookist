@@ -33,20 +33,21 @@ function esc(str) {
 
 /**
  * Gera o conteúdo Typst da folha de rosto.
- * Segue layout editorial padrão: série/coleção, título, subtítulo,
- * autoria, tradução/edição, editora e ano.
  * @param {object} meta - BookMeta
+ * @param {object} [page] - Dimensões da página { width, height } (do style-mapper)
  * @returns {string}
  */
-export function generateRosto(meta) {
+export function generateRosto(meta, page = null) {
   const lines = [];
+  const w = page?.width || '12cm';
+  const h = page?.height || '18cm';
 
   lines.push('// rosto.typ — Gerado automaticamente pelo Smartwrite Bookist');
   lines.push('// NÃO EDITE MANUALMENTE.');
   lines.push('');
 
-  // Página de rosto sem cabeçalho/rodapé
-  lines.push('#set page(header: none, footer: none, numbering: none)');
+  // Preserva dimensões do template — sem width/height o Typst reseta para A4
+  lines.push(`#set page(width: ${w}, height: ${h}, header: none, footer: none, numbering: none)`);
   lines.push('');
 
   // Layout vertical: tudo centralizado com espaçamento proporcional
@@ -118,19 +119,21 @@ export function generateRosto(meta) {
 
 /**
  * Gera o conteúdo Typst do colofão.
- * Inclui: direitos, ISBN, dados de composição (do book.yaml).
  * @param {object} meta - BookMeta
+ * @param {object} [page] - Dimensões da página { width, height } (do style-mapper)
  * @returns {string}
  */
-export function generateColofao(meta) {
+export function generateColofao(meta, page = null) {
   const lines = [];
+  const w = page?.width || '12cm';
+  const h = page?.height || '18cm';
 
   lines.push('// colofao.typ — Gerado automaticamente pelo Smartwrite Bookist');
   lines.push('// NÃO EDITE MANUALMENTE.');
   lines.push('');
 
-  // Página de colofão: sem cabeçalho, numeração romana continuada
-  lines.push('#set page(header: none)');
+  // Preserva dimensões do template
+  lines.push(`#set page(width: ${w}, height: ${h}, header: none)`);
   lines.push('');
 
   // Posiciona o colofão na parte inferior da página
@@ -186,17 +189,18 @@ export function generateColofao(meta) {
  * Gera e grava rosto.typ e colofao.typ no diretório de output.
  * @param {object} meta - BookMeta
  * @param {string} outputDir - Diretório de output
+ * @param {object} [page] - Dimensões { width, height } do template IDML
  * @returns {{ rostoPath: string, colofaoPath: string }}
  */
-export function writeBookStructure(meta, outputDir) {
+export function writeBookStructure(meta, outputDir, page = null) {
   fs.mkdirSync(outputDir, { recursive: true });
 
-  const rostoContent = generateRosto(meta);
+  const rostoContent = generateRosto(meta, page);
   const rostoPath = path.join(outputDir, 'rosto.typ');
   fs.writeFileSync(rostoPath, rostoContent, 'utf-8');
   console.log(`✅ book-assembler: rosto.typ gerado`);
 
-  const colofaoContent = generateColofao(meta);
+  const colofaoContent = generateColofao(meta, page);
   const colofaoPath = path.join(outputDir, 'colofao.typ');
   fs.writeFileSync(colofaoPath, colofaoContent, 'utf-8');
   console.log(`✅ book-assembler: colofao.typ gerado`);
