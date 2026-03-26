@@ -120,15 +120,9 @@ export function generateThemeContent(mapped, meta = null) {
     if (byRole[role]) {
       const s = byRole[role].typst;
       const name = byRole[role].name;
-      // Nome limpo para o comentário (sem o prefixo longo duplicado)
       const cleanName = name.split(':').pop() || name;
       lines.push(`// --- ${cleanName} (heading level ${level}) ---`);
       lines.push(`#show heading.where(level: ${level}): it => {`);
-
-      // Quebra de página fraca antes de cada capítulo (apenas H1)
-      if (level === 1) {
-        lines.push('  pagebreak(weak: true)');
-      }
 
       // set text: font e size
       const textArgs = [];
@@ -147,9 +141,17 @@ export function generateThemeContent(mapped, meta = null) {
       if (s.below && s.below !== 'nullem' && s.below !== '0em') blockArgs.push(`below: ${s.below}`);
       if (blockArgs.length) lines.push(`  set block(${blockArgs.join(', ')})`);
 
-      // align: H1 é CenterAlign no IDML
-      if (s.align && s.align === 'center') {
-        lines.push(`  align(center, it.body)`);
+      // Conteúdo: H1 com pagebreak fraco antes + centro; outros normal
+      if (level === 1) {
+        if (s.align === 'center') {
+          lines.push('  pagebreak(weak: true)');
+          lines.push('  align(center, it.body)');
+        } else {
+          lines.push('  pagebreak(weak: true)');
+          lines.push('  it.body');
+        }
+      } else if (s.align === 'center') {
+        lines.push('  align(center, it.body)');
       } else {
         lines.push('  it.body');
       }

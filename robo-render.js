@@ -153,7 +153,7 @@ async function runRender(options) {
   }
 
   // Monta o livro.typ final (rosto + sumário + corpo + colôfão)
-  const bookTypPath = mountBook(outputDir, vol, parsed.paragraphStyles, metaFound);
+  const bookTypPath = mountBook(outputDir, vol, parsed.paragraphStyles, metaFound, mapped.page);
   console.log(`   → livro.typ montado em ${bookTypPath}`);
 
   // --- Etapa 5: Renderização ---
@@ -245,8 +245,12 @@ function sanitizeVolName(vol) {
  * @param {Array} paragraphStyles
  * @param {boolean} hasBookMeta
  */
-function mountBook(outputDir, volTitle, paragraphStyles, hasBookMeta = false) {
+function mountBook(outputDir, volTitle, paragraphStyles, hasBookMeta = false, page = null) {
   const bookPath = path.join(outputDir, 'livro.typ');
+
+  // Dimensões do template (extraídas do IDML) — preservadas em todos os set page
+  const w = page?.width || '12cm';
+  const h = page?.height || '18cm';
 
   const sections = [];
 
@@ -268,9 +272,9 @@ function mountBook(outputDir, volTitle, paragraphStyles, hasBookMeta = false) {
     sections.push(`#pagebreak(to: "odd")`);
     sections.push(``);
 
-    // Sumário automático
+    // Sumário automático — mantém dimensões do template
     sections.push(`// --- Sumário ---`);
-    sections.push(`#set page(header: none, numbering: "i")`);
+    sections.push(`#set page(width: ${w}, height: ${h}, header: none, numbering: "i")`);
     sections.push(`#outline(`);
     sections.push(`  title: "Sumário",`);
     sections.push(`  depth: 2,`);
@@ -278,8 +282,8 @@ function mountBook(outputDir, volTitle, paragraphStyles, hasBookMeta = false) {
     sections.push(`)`);
     sections.push(`#pagebreak(to: "odd")`);
     sections.push(``);
-    // Reativa numeração arábica para o corpo
-    sections.push(`#set page(numbering: "1")`);
+    // Reativa numeração arábica para o corpo — mantém dimensões
+    sections.push(`#set page(width: ${w}, height: ${h}, numbering: "1")`);
     sections.push(`#counter(page).update(1)`);
     sections.push(``);
   }
