@@ -1,0 +1,2241 @@
+{
+  "meta": {
+    "template": "template miolo.idml",
+    "idmlPath": "/Users/zander/Library/CloudStorage/GoogleDrive-zander.cattapreta@zedicoes.com/Shared drives/Z•Edições/~ livros/# clássicos do futuro/_ robots/_templates/template miolo.idml",
+    "extractedAt": "2026-03-26T19:33:49.092Z",
+    "schemaVersion": "1"
+  },
+  "page": {
+    "widthPt": 340.15748031496065,
+    "heightPt": 510.23622047244095,
+    "widthCm": 12,
+    "heightCm": 18,
+    "facingPages": true,
+    "intent": "PrintIntent"
+  },
+  "margins": {
+    "recto": {
+      "side": "recto",
+      "columns": 1,
+      "columnGutterPt": 14.173228346456694,
+      "marginTopPt": 34.01574803149607,
+      "marginBottomPt": 36.85039370078741,
+      "marginInsidePt": 36.85039370078741,
+      "marginOutsidePt": 34.01574803149607,
+      "marginTopCm": 1.2,
+      "marginBottomCm": 1.3,
+      "marginInsideCm": 1.3,
+      "marginOutsideCm": 1.2
+    },
+    "verso": {
+      "side": "verso",
+      "columns": 1,
+      "columnGutterPt": 14.173228346456694,
+      "marginTopPt": 34.01574803149607,
+      "marginBottomPt": 36.85039370078741,
+      "marginInsidePt": 36.85039370078741,
+      "marginOutsidePt": 34.01574803149607,
+      "marginTopCm": 1.2,
+      "marginBottomCm": 1.3,
+      "marginInsideCm": 1.3,
+      "marginOutsideCm": 1.2
+    }
+  },
+  "masterSpread": {
+    "name": "A-Parent",
+    "prefix": "A",
+    "pages": [
+      {
+        "side": "verso",
+        "columns": 1,
+        "columnGutterPt": 14.173228346456694,
+        "marginTopPt": 34.01574803149607,
+        "marginBottomPt": 36.85039370078741,
+        "marginInsidePt": 36.85039370078741,
+        "marginOutsidePt": 34.01574803149607,
+        "marginTopCm": 1.2,
+        "marginBottomCm": 1.3,
+        "marginInsideCm": 1.3,
+        "marginOutsideCm": 1.2
+      },
+      {
+        "side": "recto",
+        "columns": 1,
+        "columnGutterPt": 14.173228346456694,
+        "marginTopPt": 34.01574803149607,
+        "marginBottomPt": 36.85039370078741,
+        "marginInsidePt": 36.85039370078741,
+        "marginOutsidePt": 34.01574803149607,
+        "marginTopCm": 1.2,
+        "marginBottomCm": 1.3,
+        "marginInsideCm": 1.3,
+        "marginOutsideCm": 1.2
+      }
+    ]
+  },
+  "colors": [
+    {
+      "name": "Black",
+      "model": "Process",
+      "space": "CMYK",
+      "values": [
+        0,
+        0,
+        0,
+        100
+      ],
+      "visible": true,
+      "editable": false
+    },
+    {
+      "name": "Paper",
+      "model": "Process",
+      "space": "CMYK",
+      "values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "visible": true,
+      "editable": true
+    },
+    {
+      "name": "Registration",
+      "model": "Registration",
+      "space": "CMYK",
+      "values": [
+        100,
+        100,
+        100,
+        100
+      ],
+      "visible": true,
+      "editable": false
+    }
+  ],
+  "gradients": [],
+  "fonts": [
+    {
+      "family": "Minion Pro",
+      "status": "Installed",
+      "styles": [
+        {
+          "style": "Regular",
+          "status": "Installed"
+        },
+        {
+          "style": "Cond Caption",
+          "status": "Substituted"
+        },
+        {
+          "style": "Cond",
+          "status": "Substituted"
+        },
+        {
+          "style": "Cond Subhead",
+          "status": "Substituted"
+        },
+        {
+          "style": "Cond Display",
+          "status": "Substituted"
+        },
+        {
+          "style": "Cond Italic Caption",
+          "status": "Substituted"
+        },
+        {
+          "style": "Cond Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Cond Italic Subhead",
+          "status": "Substituted"
+        },
+        {
+          "style": "Cond Italic Display",
+          "status": "Substituted"
+        },
+        {
+          "style": "Medium Cond Caption",
+          "status": "Substituted"
+        },
+        {
+          "style": "Medium Cond",
+          "status": "Substituted"
+        },
+        {
+          "style": "Medium Cond Subhead",
+          "status": "Substituted"
+        },
+        {
+          "style": "Medium Cond Display",
+          "status": "Substituted"
+        },
+        {
+          "style": "Medium Cond Italic Caption",
+          "status": "Substituted"
+        },
+        {
+          "style": "Medium Cond Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Medium Cond Italic Subhead",
+          "status": "Substituted"
+        },
+        {
+          "style": "Medium Cond Italic Display",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Cond Caption",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Cond",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Cond Subhead",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Cond Display",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Cond Italic Caption",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Cond Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Cond Italic Subhead",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Cond Italic Display",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold Cond Caption",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold Cond",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold Cond Subhead",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold Cond Display",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold Cond Italic Caption",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold Cond Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold Cond Italic Subhead",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold Cond Italic Display",
+          "status": "Substituted"
+        },
+        {
+          "style": "Caption",
+          "status": "Substituted"
+        },
+        {
+          "style": "Subhead",
+          "status": "Substituted"
+        },
+        {
+          "style": "Display",
+          "status": "Substituted"
+        },
+        {
+          "style": "Italic Caption",
+          "status": "Substituted"
+        },
+        {
+          "style": "Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Italic Subhead",
+          "status": "Substituted"
+        },
+        {
+          "style": "Italic Display",
+          "status": "Substituted"
+        },
+        {
+          "style": "Medium Caption",
+          "status": "Substituted"
+        },
+        {
+          "style": "Medium",
+          "status": "Substituted"
+        },
+        {
+          "style": "Medium Subhead",
+          "status": "Substituted"
+        },
+        {
+          "style": "Medium Display",
+          "status": "Substituted"
+        },
+        {
+          "style": "Medium Italic Caption",
+          "status": "Substituted"
+        },
+        {
+          "style": "Medium Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Medium Italic Subhead",
+          "status": "Substituted"
+        },
+        {
+          "style": "Medium Italic Display",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Caption",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Subhead",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Display",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Italic Caption",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Italic Subhead",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Italic Display",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold Caption",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold Subhead",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold Display",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold Italic Caption",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold Italic Subhead",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold Italic Display",
+          "status": "Substituted"
+        }
+      ]
+    },
+    {
+      "family": "Cardo",
+      "status": "Installed",
+      "styles": [
+        {
+          "style": "Regular",
+          "status": "Installed"
+        },
+        {
+          "style": "Italic",
+          "status": "Installed"
+        },
+        {
+          "style": "Bold",
+          "status": "Installed"
+        }
+      ]
+    },
+    {
+      "family": "Bodoni Ornaments",
+      "status": "Installed",
+      "styles": [
+        {
+          "style": "Regular",
+          "status": "Installed"
+        }
+      ]
+    },
+    {
+      "family": "Courier New",
+      "status": "Installed",
+      "styles": [
+        {
+          "style": "Regular",
+          "status": "Installed"
+        },
+        {
+          "style": "Italic",
+          "status": "Installed"
+        },
+        {
+          "style": "Bold",
+          "status": "Installed"
+        },
+        {
+          "style": "Bold Italic",
+          "status": "Installed"
+        }
+      ]
+    },
+    {
+      "family": "Myriad Pro",
+      "status": "Installed",
+      "styles": [
+        {
+          "style": "Regular",
+          "status": "Installed"
+        },
+        {
+          "style": "Italic",
+          "status": "Installed"
+        },
+        {
+          "style": "Bold",
+          "status": "Installed"
+        },
+        {
+          "style": "Bold Italic",
+          "status": "Installed"
+        },
+        {
+          "style": "Light Condensed",
+          "status": "Substituted"
+        },
+        {
+          "style": "Light Condensed Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Condensed",
+          "status": "Substituted"
+        },
+        {
+          "style": "Condensed Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Condensed",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Condensed Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold Condensed",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold Condensed Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Black Condensed",
+          "status": "Substituted"
+        },
+        {
+          "style": "Black Condensed Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Light SemiCondensed",
+          "status": "Substituted"
+        },
+        {
+          "style": "Light SemiCondensed Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "SemiCondensed",
+          "status": "Substituted"
+        },
+        {
+          "style": "SemiCondensed Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold SemiCondensed",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold SemiCondensed Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold SemiCondensed",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold SemiCondensed Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Black SemiCondensed",
+          "status": "Substituted"
+        },
+        {
+          "style": "Black SemiCondensed Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Light Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Black",
+          "status": "Substituted"
+        },
+        {
+          "style": "Black Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Light SemiExtended",
+          "status": "Substituted"
+        },
+        {
+          "style": "Light SemiExtended Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "SemiExtended",
+          "status": "Substituted"
+        },
+        {
+          "style": "SemiExtended Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold SemiExtended",
+          "status": "Substituted"
+        },
+        {
+          "style": "Semibold SemiExtended Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold SemiExtended",
+          "status": "Substituted"
+        },
+        {
+          "style": "Bold SemiExtended Italic",
+          "status": "Substituted"
+        },
+        {
+          "style": "Black SemiExtended",
+          "status": "Substituted"
+        },
+        {
+          "style": "Black SemiExtended Italic",
+          "status": "Substituted"
+        }
+      ]
+    },
+    {
+      "family": "Kozuka Mincho Pr6N",
+      "status": "Installed",
+      "styles": [
+        {
+          "style": "R",
+          "status": "Installed"
+        },
+        {
+          "style": "EL",
+          "status": "Substituted"
+        },
+        {
+          "style": "L",
+          "status": "Substituted"
+        },
+        {
+          "style": "M",
+          "status": "Substituted"
+        },
+        {
+          "style": "B",
+          "status": "Substituted"
+        },
+        {
+          "style": "H",
+          "status": "Substituted"
+        }
+      ]
+    }
+  ],
+  "textVariables": [
+    {
+      "name": "TV XRefChapterNumber",
+      "type": "XrefChapterNumberType"
+    },
+    {
+      "name": "TV XRefPageNumber",
+      "type": "XrefPageNumberType"
+    }
+  ],
+  "languages": [],
+  "colorProfile": {
+    "cmyk": "U.S. Web Coated (SWOP) v2",
+    "rgb": "sRGB IEC61966-2.1"
+  },
+  "paragraphStyles": [
+    {
+      "self": "ParagraphStyle/$ID/[No paragraph style]",
+      "basedOn": null,
+      "name": "$ID/[No paragraph style]",
+      "fontFamily": "Minion Pro",
+      "fontStyle": "Regular",
+      "pointSize": 12,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "LeftAlign",
+      "tracking": 0,
+      "capitalization": "Normal",
+      "fontColor": "Black"
+    },
+    {
+      "self": "ParagraphStyle/$ID/NormalParagraphStyle",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/NormalParagraphStyle",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 30,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 9,
+        "leading": 14,
+        "justification": "LeftJustified",
+        "capitalization": null,
+        "tracking": 30,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "basedOn": "$ID/[No paragraph style]",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Body Text:Estilos de texto:Body Text:Body Text",
+      "fontFamily": "Cardo",
+      "fontStyle": null,
+      "pointSize": 9,
+      "leading": 14,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 14.173228346456694,
+      "justification": "LeftJustified",
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text DropCaps",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Body Text:Estilos de texto:Body Text:Body Text DropCaps",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 11.338582677165356,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 9,
+        "leading": 14,
+        "justification": "LeftJustified",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 11.338582677165356,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aBody Text%3aBulleted Body Text",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Body Text:Estilos de texto:Body Text:Bulleted Body Text",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 18,
+      "firstLineIndent": -18,
+      "justification": "LeftAlign",
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 9,
+        "leading": 14,
+        "justification": "LeftAlign",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 18,
+        "firstLineIndent": -18
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aBody Text%3aNumbered Body Text",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Body Text:Estilos de texto:Body Text:Numbered Body Text",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 9,
+        "leading": 14,
+        "justification": "LeftJustified",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aBody Text%3aEpigraph and Dedication",
+      "basedOn": "$ID/[No paragraph style]",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Body Text:Estilos de texto:Body Text:Epigraph and Dedication",
+      "fontFamily": "Cardo",
+      "fontStyle": null,
+      "pointSize": 9,
+      "leading": 16,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 70.86614173228347,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 10,
+      "capitalization": null,
+      "fontColor": null
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aBody Text%3aCitation",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Body Text:Estilos de texto:Body Text:Citation",
+      "fontFamily": null,
+      "fontStyle": "Italic",
+      "pointSize": null,
+      "leading": 13,
+      "spaceBefore": 14.173228346456694,
+      "spaceAfter": 11.338582677165356,
+      "leftIndent": 56.69291338582678,
+      "firstLineIndent": 0,
+      "justification": "LeftAlign",
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": "Italic",
+        "pointSize": 9,
+        "leading": 13,
+        "justification": "LeftAlign",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 14.173228346456694,
+        "spaceAfter": 11.338582677165356,
+        "leftIndent": 56.69291338582678,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aBody Text%3aCentered",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Body Text:Estilos de texto:Body Text:Centered",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": 0,
+      "spaceBefore": 14.173228346456694,
+      "spaceAfter": 5.669291338582678,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "CenterAlign",
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 9,
+        "leading": 0,
+        "justification": "CenterAlign",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 14.173228346456694,
+        "spaceAfter": 5.669291338582678,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aBody Text%3aOrnaments",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Body Text:Estilos de texto:Body Text:Ornaments",
+      "fontFamily": "Bodoni Ornaments",
+      "fontStyle": null,
+      "pointSize": 8,
+      "leading": 0,
+      "spaceBefore": 14,
+      "spaceAfter": 14,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "CenterJustified",
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Bodoni Ornaments",
+        "fontStyle": null,
+        "pointSize": 8,
+        "leading": 0,
+        "justification": "CenterJustified",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 14,
+        "spaceAfter": 14,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aBody Text%3aTable Title",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Body Text:Estilos de texto:Body Text:Table Title",
+      "fontFamily": null,
+      "fontStyle": "Bold",
+      "pointSize": null,
+      "leading": 12,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "CenterAlign",
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": "Bold",
+        "pointSize": 9,
+        "leading": 12,
+        "justification": "CenterAlign",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aBody Text%3aTable Text",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Body Text:Estilos de texto:Body Text:Table Text",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": 12,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "LeftAlign",
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 9,
+        "leading": 12,
+        "justification": "LeftAlign",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aBody Text%3aBibliography",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBulleted Body Text",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Body Text:Estilos de texto:Body Text:Bibliography",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": 8,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 20,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 8,
+        "leading": 14,
+        "justification": "LeftAlign",
+        "capitalization": null,
+        "tracking": 20,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aStructural Styles%3aHeading 1",
+      "basedOn": "$ID/[No paragraph style]",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Structural Styles:Estilos de texto:Structural Styles:Heading 1",
+      "fontFamily": "Cardo",
+      "fontStyle": null,
+      "pointSize": 18,
+      "leading": 24,
+      "spaceBefore": 0,
+      "spaceAfter": 42.51968503937009,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "CenterAlign",
+      "tracking": 0,
+      "capitalization": "SmallCaps",
+      "fontColor": null
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aStructural Styles%3aHeading 2",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aStructural Styles%3aHeading 1",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Structural Styles:Estilos de texto:Structural Styles:Heading 2",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": 12,
+      "leading": 14,
+      "spaceBefore": 11.338582677165356,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 12,
+        "leading": 14,
+        "justification": "CenterAlign",
+        "capitalization": "SmallCaps",
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 11.338582677165356,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aStructural Styles%3aHeading 3",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aStructural Styles%3aHeading 2",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Structural Styles:Estilos de texto:Structural Styles:Heading 3",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": 10,
+      "leading": 0,
+      "spaceBefore": 25.511811023622048,
+      "spaceAfter": 5.669291338582678,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 150,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 10,
+        "leading": 0,
+        "justification": "CenterAlign",
+        "capitalization": "SmallCaps",
+        "tracking": 150,
+        "fontColor": null,
+        "spaceBefore": 25.511811023622048,
+        "spaceAfter": 5.669291338582678,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aStructural Styles%3aHeading 4",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aStructural Styles%3aHeading 3",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Structural Styles:Estilos de texto:Structural Styles:Heading 4",
+      "fontFamily": null,
+      "fontStyle": "Bold",
+      "pointSize": 11,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 14.173228346456694,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": "Bold",
+        "pointSize": 11,
+        "leading": 0,
+        "justification": "CenterAlign",
+        "capitalization": "SmallCaps",
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 14.173228346456694
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aStructural Styles%3aTitle",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aStructural Styles%3aHeading 1",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Structural Styles:Estilos de texto:Structural Styles:Title",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": 36,
+      "leading": 36,
+      "spaceBefore": 0,
+      "spaceAfter": 42.51968503937008,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 100,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 36,
+        "leading": 36,
+        "justification": "CenterAlign",
+        "capitalization": "SmallCaps",
+        "tracking": 100,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 42.51968503937008,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aStructural Styles%3aSubtitle",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aStructural Styles%3aHeading 1",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Structural Styles:Estilos de texto:Structural Styles:Subtitle",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": 12,
+      "leading": 16,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 14.173228346456694,
+      "firstLineIndent": 0,
+      "justification": "FullyJustified",
+      "tracking": 270,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 12,
+        "leading": 16,
+        "justification": "FullyJustified",
+        "capitalization": "SmallCaps",
+        "tracking": 270,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 14.173228346456694,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aLetter Styles%3aAddressee",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Letter Styles:Estilos de texto:Letter Styles:Addressee",
+      "fontFamily": null,
+      "fontStyle": "Italic",
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 11.338582677165356,
+      "spaceAfter": 11.338582677165356,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": "Italic",
+        "pointSize": 9,
+        "leading": 14,
+        "justification": "LeftJustified",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 11.338582677165356,
+        "spaceAfter": 11.338582677165356,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aLetter Styles%3aDate",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Letter Styles:Estilos de texto:Letter Styles:Date",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 11,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "RightAlign",
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 9,
+        "leading": 14,
+        "justification": "RightAlign",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 11,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aLetter Styles%3aBody Letter first line",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Letter Styles:Estilos de texto:Letter Styles:Body Letter first line",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 11.338582677165356,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 9,
+        "leading": 14,
+        "justification": "LeftJustified",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 11.338582677165356,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aLetter Styles%3aBody Letter",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Letter Styles:Estilos de texto:Letter Styles:Body Letter",
+      "fontFamily": null,
+      "fontStyle": "Italic",
+      "pointSize": null,
+      "leading": 10,
+      "spaceBefore": 5.669291338582678,
+      "spaceAfter": 14.173228346456694,
+      "leftIndent": 42.51968503937008,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 20,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": "Italic",
+        "pointSize": 9,
+        "leading": 10,
+        "justification": "LeftJustified",
+        "capitalization": null,
+        "tracking": 20,
+        "fontColor": null,
+        "spaceBefore": 5.669291338582678,
+        "spaceAfter": 14.173228346456694,
+        "leftIndent": 42.51968503937008,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de texto%3aLetter Styles%3aSubscription",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de texto:$ID/Estilos de texto:Letter Styles:Estilos de texto:Letter Styles:Subscription",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": 0,
+      "spaceBefore": 14.173228346456694,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "RightAlign",
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 9,
+        "leading": 0,
+        "justification": "RightAlign",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 14.173228346456694,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de documento%3aPage Header",
+      "basedOn": "$ID/[No paragraph style]",
+      "name": "$ID/Estilos de documento:Estilos de documento:Page Header",
+      "fontFamily": "Cardo",
+      "fontStyle": null,
+      "pointSize": 6,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "AwayFromBindingSide",
+      "tracking": 50,
+      "capitalization": null,
+      "fontColor": null
+    },
+    {
+      "self": "ParagraphStyle/Estilos de documento%3aFootnotes",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de documento:Estilos de documento:Footnotes",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": 7,
+      "leading": 8,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "LeftAlign",
+      "tracking": 10,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 7,
+        "leading": 8,
+        "justification": "LeftAlign",
+        "capitalization": null,
+        "tracking": 10,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de documento%3aPage Footer",
+      "basedOn": "ParagraphStyle/Estilos de documento%3aPage Header",
+      "name": "$ID/Estilos de documento:Estilos de documento:Page Footer",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 6,
+        "leading": null,
+        "justification": "AwayFromBindingSide",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de documento%3aIndex Body Text",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de documento:Estilos de documento:Index Body Text",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 9,
+        "leading": 14,
+        "justification": "LeftJustified",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de documento%3aIndex Body Text lvl 1",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de documento:Estilos de documento:Index Body Text lvl 1",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 9,
+        "leading": 14,
+        "justification": "LeftJustified",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de documento%3aIndex Body Text lvl 2",
+      "basedOn": "ParagraphStyle/Estilos de documento%3aIndex Body Text lvl 1",
+      "name": "$ID/Estilos de documento:Estilos de documento:Index Body Text lvl 2",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 14.173228346456694,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 9,
+        "leading": 14,
+        "justification": "LeftJustified",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 14.173228346456694,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de documento%3aCaption",
+      "basedOn": "ParagraphStyle/Estilos de documento%3aFootnotes",
+      "name": "$ID/Estilos de documento:Estilos de documento:Caption",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "RightAlign",
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 7,
+        "leading": 8,
+        "justification": "RightAlign",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de documento%3aFicha Catalográfica",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aBody Text",
+      "name": "$ID/Estilos de documento:Estilos de documento:Ficha Catalográfica",
+      "fontFamily": "Courier New",
+      "fontStyle": null,
+      "pointSize": 7,
+      "leading": 9,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 34.01574803149607,
+      "firstLineIndent": -34.01574803149607,
+      "justification": "LeftAlign",
+      "tracking": -30,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Courier New",
+        "fontStyle": null,
+        "pointSize": 7,
+        "leading": 9,
+        "justification": "LeftAlign",
+        "capitalization": null,
+        "tracking": -30,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 34.01574803149607,
+        "firstLineIndent": -34.01574803149607
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de documento%3aLegenda de foto",
+      "basedOn": "ParagraphStyle/Estilos de documento%3aFootnotes",
+      "name": "$ID/Estilos de documento:Estilos de documento:Legenda de foto",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": 10,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "CenterAlign",
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 7,
+        "leading": 10,
+        "justification": "CenterAlign",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de documento%3aIndex Body Text lvl 3",
+      "basedOn": "ParagraphStyle/Estilos de documento%3aIndex Body Text lvl 2",
+      "name": "$ID/Estilos de documento:Estilos de documento:Index Body Text lvl 3",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 21.25984251968504,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 9,
+        "leading": 14,
+        "justification": "LeftJustified",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 21.25984251968504,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Estilos de documento%3aIndex Body Text lvl 4",
+      "basedOn": "ParagraphStyle/Estilos de documento%3aIndex Body Text lvl 3",
+      "name": "$ID/Estilos de documento:Estilos de documento:Index Body Text lvl 4",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 28.34645669291339,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 9,
+        "leading": 14,
+        "justification": "LeftJustified",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 28.34645669291339,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Front and Back Matter Styles%3aFM Legal Text Title",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aStructural Styles%3aSubtitle",
+      "name": "$ID/Front and Back Matter Styles:Front and Back Matter Styles:FM Legal Text Title",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": 10,
+      "leading": 12,
+      "spaceBefore": 5.669291338582678,
+      "spaceAfter": 5.669291338582678,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "LeftAlign",
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 10,
+        "leading": 12,
+        "justification": "LeftAlign",
+        "capitalization": "SmallCaps",
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 5.669291338582678,
+        "spaceAfter": 5.669291338582678,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Front and Back Matter Styles%3aFM Títle",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aStructural Styles%3aTitle",
+      "name": "$ID/Front and Back Matter Styles:Front and Back Matter Styles:FM Títle",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": 20,
+      "leading": 24,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 20,
+        "leading": 24,
+        "justification": "CenterAlign",
+        "capitalization": "SmallCaps",
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Front and Back Matter Styles%3aFM Author Name",
+      "basedOn": "$ID/[No paragraph style]",
+      "name": "$ID/Front and Back Matter Styles:Front and Back Matter Styles:FM Author Name",
+      "fontFamily": "Cardo",
+      "fontStyle": null,
+      "pointSize": 24,
+      "leading": 87,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "CenterAlign",
+      "tracking": -40,
+      "capitalization": null,
+      "fontColor": null
+    },
+    {
+      "self": "ParagraphStyle/Front and Back Matter Styles%3aBack Matter Text Style",
+      "basedOn": "ParagraphStyle/Estilos de documento%3aPage Footer",
+      "name": "$ID/Front and Back Matter Styles:Front and Back Matter Styles:Back Matter Text Style",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": 10,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "CenterJustified",
+      "tracking": 450,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 10,
+        "leading": null,
+        "justification": "CenterJustified",
+        "capitalization": null,
+        "tracking": 450,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Front and Back Matter Styles%3aFM Legal Text",
+      "basedOn": "ParagraphStyle/$ID/NormalParagraphStyle",
+      "name": "$ID/Front and Back Matter Styles:Front and Back Matter Styles:FM Legal Text",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": 7,
+      "leading": 9,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 20,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 7,
+        "leading": 9,
+        "justification": "LeftJustified",
+        "capitalization": null,
+        "tracking": 20,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Front and Back Matter Styles%3aFM Legal Text Bulleted",
+      "basedOn": "ParagraphStyle/Front and Back Matter Styles%3aFM Legal Text",
+      "name": "$ID/Front and Back Matter Styles:Front and Back Matter Styles:FM Legal Text Bulleted",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 32.173228346456696,
+      "firstLineIndent": -18,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 7,
+        "leading": 9,
+        "justification": "LeftJustified",
+        "capitalization": null,
+        "tracking": 0,
+        "fontColor": null,
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 32.173228346456696,
+        "firstLineIndent": -18
+      }
+    },
+    {
+      "self": "ParagraphStyle/Cover Styles%3aCover Title",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aStructural Styles%3aHeading 1",
+      "name": "$ID/Cover Styles:Cover Styles:Cover Title",
+      "fontFamily": null,
+      "fontStyle": "Italic",
+      "pointSize": 60,
+      "leading": 60,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "AwayFromBindingSide",
+      "tracking": 0,
+      "capitalization": "Normal",
+      "fontColor": "Paper",
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": "Italic",
+        "pointSize": 60,
+        "leading": 60,
+        "justification": "AwayFromBindingSide",
+        "capitalization": "Normal",
+        "tracking": 0,
+        "fontColor": "Paper",
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Cover Styles%3aCover Author Name",
+      "basedOn": "$ID/[No paragraph style]",
+      "name": "$ID/Cover Styles:Cover Styles:Cover Author Name",
+      "fontFamily": "Tangerine",
+      "fontStyle": "Bold",
+      "pointSize": 34,
+      "leading": 34,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "RightAlign",
+      "tracking": 30,
+      "capitalization": null,
+      "fontColor": "Paper"
+    },
+    {
+      "self": "ParagraphStyle/Cover Styles%3aCover Ear Citation",
+      "basedOn": "ParagraphStyle/Estilos de texto%3aBody Text%3aCentered",
+      "name": "$ID/Cover Styles:Cover Styles:Cover Ear Citation",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "CenterJustified",
+      "tracking": 100,
+      "capitalization": null,
+      "fontColor": "Paper",
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 9,
+        "leading": 0,
+        "justification": "CenterJustified",
+        "capitalization": null,
+        "tracking": 100,
+        "fontColor": "Paper",
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Cover Styles%3aCover Ear Author Name",
+      "basedOn": "ParagraphStyle/Cover Styles%3aCover Ear Citation",
+      "name": "$ID/Cover Styles:Cover Styles:Cover Ear Author Name",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 150,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": null,
+        "pointSize": 9,
+        "leading": 0,
+        "justification": "CenterJustified",
+        "capitalization": null,
+        "tracking": 150,
+        "fontColor": "Paper",
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Cover Styles%3aCover Ear Book Name",
+      "basedOn": "ParagraphStyle/Cover Styles%3aCover Ear Citation",
+      "name": "$ID/Cover Styles:Cover Styles:Cover Ear Book Name",
+      "fontFamily": null,
+      "fontStyle": "Italic",
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 150,
+      "capitalization": null,
+      "fontColor": null,
+      "resolved": {
+        "fontFamily": "Cardo",
+        "fontStyle": "Italic",
+        "pointSize": 9,
+        "leading": 0,
+        "justification": "CenterJustified",
+        "capitalization": null,
+        "tracking": 150,
+        "fontColor": "Paper",
+        "spaceBefore": 0,
+        "spaceAfter": 0,
+        "leftIndent": 0,
+        "firstLineIndent": 0
+      }
+    },
+    {
+      "self": "ParagraphStyle/Cover Styles%3aCover Spine",
+      "basedOn": "$ID/[No paragraph style]",
+      "name": "$ID/Cover Styles:Cover Styles:Cover Spine",
+      "fontFamily": "Cardo",
+      "fontStyle": null,
+      "pointSize": 10,
+      "leading": 14,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": "CenterAlign",
+      "tracking": 150,
+      "capitalization": null,
+      "fontColor": "Paper"
+    }
+  ],
+  "characterStyles": [
+    {
+      "self": "CharacterStyle/$ID/[No character style]",
+      "basedOn": null,
+      "name": "$ID/[No character style]",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null
+    },
+    {
+      "self": "CharacterStyle/Structural Styles%3aRegular",
+      "basedOn": "$ID/[No character style]",
+      "name": "$ID/Structural Styles:Structural Styles:Regular",
+      "fontFamily": null,
+      "fontStyle": "Regular",
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null
+    },
+    {
+      "self": "CharacterStyle/Structural Styles%3aItalics",
+      "basedOn": "$ID/[No character style]",
+      "name": "$ID/Structural Styles:Structural Styles:Italics",
+      "fontFamily": null,
+      "fontStyle": "Italic",
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null
+    },
+    {
+      "self": "CharacterStyle/Structural Styles%3aBold",
+      "basedOn": "$ID/[No character style]",
+      "name": "$ID/Structural Styles:Structural Styles:Bold",
+      "fontFamily": null,
+      "fontStyle": "Regular",
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null
+    },
+    {
+      "self": "CharacterStyle/Structural Styles%3aSmall Caps",
+      "basedOn": "$ID/[No character style]",
+      "name": "$ID/Structural Styles:Structural Styles:Small Caps",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": "SmallCaps",
+      "fontColor": null
+    },
+    {
+      "self": "CharacterStyle/Structural Styles%3aAll Caps",
+      "basedOn": "$ID/[No character style]",
+      "name": "$ID/Structural Styles:Structural Styles:All Caps",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": "AllCaps",
+      "fontColor": null
+    },
+    {
+      "self": "CharacterStyle/Structural Styles%3aHeading 1",
+      "basedOn": "$ID/[No character style]",
+      "name": "$ID/Structural Styles:Structural Styles:Heading 1",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": "SmallCaps",
+      "fontColor": null
+    },
+    {
+      "self": "CharacterStyle/Structural Styles%3aFootnote",
+      "basedOn": "$ID/[No character style]",
+      "name": "$ID/Structural Styles:Structural Styles:Footnote",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null
+    }
+  ],
+  "objectStyles": [
+    {
+      "self": "ObjectStyle/$ID/[None]",
+      "basedOn": null,
+      "name": "$ID/[None]",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null
+    },
+    {
+      "self": "ObjectStyle/$ID/[Normal Graphics Frame]",
+      "basedOn": "$ID/[None]",
+      "name": "$ID/[Normal Graphics Frame]",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null
+    },
+    {
+      "self": "ObjectStyle/$ID/[Normal Text Frame]",
+      "basedOn": "$ID/[None]",
+      "name": "$ID/[Normal Text Frame]",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null
+    },
+    {
+      "self": "ObjectStyle/$ID/[Normal Grid]",
+      "basedOn": "$ID/[None]",
+      "name": "$ID/[Normal Grid]",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null
+    }
+  ],
+  "tableStyles": [
+    {
+      "self": "TableStyle/$ID/[No table style]",
+      "basedOn": null,
+      "name": "$ID/[No table style]",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 4,
+      "spaceAfter": -4,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null
+    },
+    {
+      "self": "TableStyle/$ID/[Basic Table]",
+      "basedOn": "$ID/[No table style]",
+      "name": "$ID/[Basic Table]",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null
+    }
+  ],
+  "cellStyles": [
+    {
+      "self": "CellStyle/$ID/[None]",
+      "basedOn": null,
+      "name": "$ID/[None]",
+      "fontFamily": null,
+      "fontStyle": null,
+      "pointSize": null,
+      "leading": null,
+      "spaceBefore": 0,
+      "spaceAfter": 0,
+      "leftIndent": 0,
+      "firstLineIndent": 0,
+      "justification": null,
+      "tracking": 0,
+      "capitalization": null,
+      "fontColor": null
+    }
+  ]
+}

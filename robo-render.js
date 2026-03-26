@@ -18,6 +18,7 @@ import { writeTheme } from './src/theme-generator.js';
 import { compileMarkdown } from './src/markdown-compiler.js';
 import { readBookMeta } from './src/book-meta-parser.js';
 import { writeBookStructure } from './src/book-assembler.js';
+import { extractIdml } from './src/idml-extractor.js';
 
 // ---------------------------------------------------------------------------
 // CLI Setup
@@ -39,6 +40,27 @@ program
   .option('--dump', 'Apenas fazer dump dos estilos IDML (não renderiza)')
   .action(async (options) => {
     await runRender(options);
+  });
+
+program
+  .command('extract-idml')
+  .description('Extrai e persiste todos os dados do template .idml em JSON')
+  .option('--idml <path>', 'Caminho do template .idml')
+  .option('--out <path>', 'Caminho do JSON de saída')
+  .action(async (options) => {
+    const rootDir = process.cwd();
+    const idmlPath = options.idml
+      ? path.resolve(options.idml)
+      : path.join(rootDir, '_templates', 'template miolo.idml');
+    if (!fs.existsSync(idmlPath)) {
+      console.error(`❌ Template não encontrado: ${idmlPath}`);
+      process.exit(1);
+    }
+    const outPath = options.out
+      ? path.resolve(options.out)
+      : idmlPath + '.json';
+    await extractIdml(idmlPath, outPath);
+    console.log(`\n📊 Resumo do template:\n   ${outPath}`);
   });
 
 program.parse(process.argv);
