@@ -25,6 +25,7 @@ logs/
 # Pastas protegidas (local only)
 _bkps/
 _resources/
+_temp/
 
 # Typst cache
 .typst/
