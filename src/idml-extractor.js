@@ -67,41 +67,47 @@ function normalizeAttr(val) {
 
 /**
  * Traversal recursivo nos grupos de estilos para coletar todos os styles.
- * @param {object|Array} node - O nó XML atual
- * @param {string} type - Tipo de style a coletar (ex: "ParagraphStyle")
- * @param {Array} accumulator - Acumulador de resultados
- * @param {string} prefix - Prefixo de nome para grupos aninhados
+ * @param {object|Array} node - O nó XML atual (Root group ou subgrupo)
+ * @param {string} type - "ParagraphStyle", "CharacterStyle", etc.
+ * @param {Array} accumulator - Resultado acumulado
+ * @param {string} prefix - Caminho de grupos pai (ex: "Body Text:Subgrupo")
  */
 function collectStyles(node, type, accumulator = [], prefix = '') {
   if (!node) return accumulator;
 
   const groupKey = `${type}Group`;
 
-  // Se é um array, itera
+  // Se é um array, itera cada elemento
   if (Array.isArray(node)) {
     for (const child of node) collectStyles(child, type, accumulator, prefix);
     return accumulator;
   }
 
-  // Coleta estilos do tipo especificado
+  // Coleta estilos do tipo especificado neste nível
   if (node[type]) {
     const styles = Array.isArray(node[type]) ? node[type] : [node[type]];
     for (const s of styles) {
+      // O Name do estilo não inclui o caminho de grupos — isso é responsabilidade do prefix
       accumulator.push({ ...s, _prefix: prefix });
     }
   }
 
-  // Desce em grupos aninhados
+  // Desce em subgrupos, acumulando o caminho
   if (node[groupKey]) {
     const groups = Array.isArray(node[groupKey]) ? node[groupKey] : [node[groupKey]];
     for (const g of groups) {
-      const groupName = g.Name ? (prefix ? `${prefix}:${g.Name}` : g.Name) : prefix;
-      collectStyles(g, type, accumulator, groupName);
+      // Monta o caminho: "GrupoPai:GrupoFilho"
+      const groupName = g.Name || '';
+      const newPrefix = groupName
+        ? (prefix ? `${prefix}:${groupName}` : groupName)
+        : prefix;
+      collectStyles(g, type, accumulator, newPrefix);
     }
   }
 
   return accumulator;
 }
+
 
 /**
  * Extrai o valor de propriedade do IDML que pode vir como:

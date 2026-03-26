@@ -120,25 +120,45 @@ export function generateThemeContent(mapped, meta = null) {
     if (byRole[role]) {
       const s = byRole[role].typst;
       const name = byRole[role].name;
-      lines.push(`// --- ${name} (heading level ${level}) ---`);
+      // Nome limpo para o comentário (sem o prefixo longo duplicado)
+      const cleanName = name.split(':').pop() || name;
+      lines.push(`// --- ${cleanName} (heading level ${level}) ---`);
       lines.push(`#show heading.where(level: ${level}): it => {`);
-      if (s.fontSize || s.fontFamily) {
-        const textArgs = [];
-        if (s.fontFamily) textArgs.push(`font: "${s.fontFamily}"`);
-        if (s.fontSize) textArgs.push(`size: ${s.fontSize}`);
-        lines.push(`  set text(${textArgs.join(', ')})`);
+
+      // Quebra de página fraca antes de cada capítulo (apenas H1)
+      if (level === 1) {
+        lines.push('  pagebreak(weak: true)');
       }
-      if ((s.above && s.above !== 'null em') || (s.below && s.below !== 'null em')) {
-        const blockArgs = [];
-        if (s.above && s.above !== 'null em' && s.above !== '0em') blockArgs.push(`above: ${s.above}`);
-        if (s.below && s.below !== 'null em' && s.below !== '0em') blockArgs.push(`below: ${s.below}`);
-        if (blockArgs.length) lines.push(`  set block(${blockArgs.join(', ')})`);
+
+      // set text: font e size
+      const textArgs = [];
+      if (s.fontFamily) textArgs.push(`font: "${s.fontFamily}"`);
+      if (s.fontSize) textArgs.push(`size: ${s.fontSize}`);
+      if (textArgs.length) lines.push(`  set text(${textArgs.join(', ')})`);
+
+      // set par: leading quando disponível
+      if (s.leading && s.leading !== '0pt' && s.leading !== 'nullpt') {
+        lines.push(`  set par(leading: ${s.leading})`);
       }
-      lines.push('  it.body');
+
+      // set block: espaçamento acima/abaixo
+      const blockArgs = [];
+      if (s.above && s.above !== 'nullem' && s.above !== '0em') blockArgs.push(`above: ${s.above}`);
+      if (s.below && s.below !== 'nullem' && s.below !== '0em') blockArgs.push(`below: ${s.below}`);
+      if (blockArgs.length) lines.push(`  set block(${blockArgs.join(', ')})`);
+
+      // align: H1 é CenterAlign no IDML
+      if (s.align && s.align === 'center') {
+        lines.push(`  align(center, it.body)`);
+      } else {
+        lines.push('  it.body');
+      }
+
       lines.push('}');
       lines.push('');
     }
   }
+
 
   // Footnote
   if (byRole.footnote) {
