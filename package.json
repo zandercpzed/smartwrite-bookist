@@ -1,0 +1,37 @@
+{
+  "name": "smartwrite-bookist",
+  "version": "0.1.0",
+  "description": "Headless book production engine — PDF print-ready + EPUB3 from IDML templates and Markdown. Part of the Smartwrite suite.",
+  "main": "robo-render.js",
+  "type": "module",
+  "scripts": {
+    "render": "node robo-render.js",
+    "preflight": "node scripts/preflight.js",
+    "test": "echo \"No tests yet\""
+  },
+  "keywords": [
+    "smartwrite",
+    "bookist",
+    "typst",
+    "epub",
+    "idml",
+    "editorial",
+    "pdf",
+    "headless"
+  ],
+  "author": "Z•Edições",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "unzipper": "^0.12.3",
+    "xml2js": "^0.6.2",
+    "unified": "^11.0.5",
+    "remark-parse": "^11.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-footnotes": "^4.0.1",
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {}
+}
