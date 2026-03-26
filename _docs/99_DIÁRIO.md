@@ -41,6 +41,14 @@
 **Pendências imediatas:**
 - Sprint 1: inicializar repositório GitHub e escrever o primeiro código
 
+**Encerramento da sessão (EOD):**
+- Repositório inicializado e publicado no GitHub (`git init` + force push)
+- `LICENSE` MIT criada
+- `.gitignore` configurado (`_temp/`, `_bkps/`, `.DS_Store`, `output/`)
+- Livro-teste movido pelo Zander para `_temp/` (não commitado)
+- `README.md` público criado — apresentação do projeto no GitHub
+- Workflows movidos de `_agent/` para `.agent/workflows/` — estrutura unificada
+
 ---
 
 _[Log em andamento. Cada sessão de trabalho deve ser documentada aqui antes do /eod.]_
