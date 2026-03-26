@@ -129,10 +129,19 @@ export function mapStyles(parsed) {
         // Tracking em 1/1000 de em (IDML) → convertido para Typst em (tracking/1000em)
         tracking: style.tracking != null ? style.tracking
                   : (style.resolved?.tracking != null ? style.resolved.tracking : null),
+
+        // Page break e Keep Options
+        pageBreakBefore: style.pageBreakBefore ?? null,
+        keepLinesTogether: style.keepLinesTogether ?? false,
+        keepAllLinesTogether: style.keepAllLinesTogether ?? false,
+        keepWithNext: style.keepWithNext ?? 0,
+        keepFirstLines: style.keepFirstLines ?? 2,
+        keepLastLines: style.keepLastLines ?? 2,
       },
     };
 
     mappedStyles.push(mapped);
+
     if (!role) unmappedStyles.push(style.name);
   }
 

@@ -132,20 +132,30 @@ export function generateThemeContent(mapped, meta = null) {
       if (s.below && s.below !== 'nullem' && s.below !== '0em') blockArgs.push(`below: ${s.below}`);
       if (blockArgs.length) lines.push(`  set block(${blockArgs.join(', ')})`);
 
-      // Conteúdo: H1 com pagebreak para página ímpar (recto) + centro; outros normal
-      if (level === 1) {
-        if (s.align === 'center') {
-          lines.push('  pagebreak(to: "odd", weak: true)');
-          lines.push('  align(center, it.body)');
-        } else {
-          lines.push('  pagebreak(to: "odd", weak: true)');
-          lines.push('  it.body');
-        }
-      } else if (s.align === 'center') {
+      // Estrutura de PageBreak baseada no IDML
+      if (s.pageBreakBefore === 'NextPage') {
+        lines.push('  pagebreak(weak: true)');
+      } else if (s.pageBreakBefore === 'NextOddPage') {
+        lines.push('  pagebreak(to: "odd", weak: true)');
+      } else if (s.pageBreakBefore === 'NextEvenPage') {
+        lines.push('  pagebreak(to: "even", weak: true)');
+      } else if (level === 1 && s.pageBreakBefore !== 'None') {
+        // Convenção editorial caso o IDML omita (Auto) e seja H1
+        lines.push('  pagebreak(to: "odd", weak: true)');
+      }
+
+      // Anotação visual sobre Keep Options para o futuro
+      if (s.keepWithNext > 0 || s.keepAllLinesTogether) {
+        lines.push('  // [IDML Keep Options: ativo. Typst naturalmente mantém headings com o texto seguinte]');
+      }
+
+      // Conteúdo e alinhamento
+      if (s.align === 'center') {
         lines.push('  align(center, it.body)');
       } else {
         lines.push('  it.body');
       }
+
 
       lines.push('}');
       lines.push('');

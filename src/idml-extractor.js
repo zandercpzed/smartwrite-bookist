@@ -167,6 +167,13 @@ function extractStyleProps(raw) {
     justification: raw.Justification || extractPropValue(props.Justification) || null,
     tracking: raw.Tracking != null ? Number(raw.Tracking) || 0 : 0,
     capitalization: raw.Capitalization || extractPropValue(props.Capitalization) || null,
+    pageBreakBefore: raw.PageBreakBefore || extractPropValue(props.PageBreakBefore) || 'Auto',
+    keepLinesTogether: raw.KeepLinesTogether === 'true',
+    keepAllLinesTogether: raw.KeepAllLinesTogether === 'true',
+    keepWithNext: raw.KeepWithNext != null ? Number(raw.KeepWithNext) || 0 : 0,
+    keepFirstLines: raw.KeepFirstLines != null ? Number(raw.KeepFirstLines) || 2 : 2,
+    keepLastLines: raw.KeepLastLines != null ? Number(raw.KeepLastLines) || 2 : 2,
+
     fontColor: (() => {
       const fc = raw.FillColor || extractPropValue(props.FillColor);
       if (!fc || String(fc).startsWith('$ID/') || String(fc).startsWith('Swatch/')) return null;
@@ -228,7 +235,9 @@ function resolveInheritance(style, byId, visited = new Set()) {
   const resolved = {};
   const typoPropKeys = [
     'fontFamily', 'fontStyle', 'pointSize', 'leading', 'justification',
-    'capitalization', 'tracking', 'fontColor',
+    'capitalization', 'tracking', 'fontColor', 
+    'pageBreakBefore', 'keepLinesTogether', 'keepAllLinesTogether',
+    'keepWithNext', 'keepFirstLines', 'keepLastLines'
   ];
   for (const key of typoPropKeys) {
     resolved[key] = style[key] != null ? style[key] : (parentResolved[key] ?? null);

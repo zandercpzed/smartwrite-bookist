@@ -41,6 +41,15 @@ function toLegacyStyle(s) {
     capitalization: s.capitalization ?? r.capitalization ?? null,
     // tracking: prefere resolved (herança aplicada), depois direto
     tracking: r.tracking ?? s.tracking ?? null,
+    
+    // page break & keep options (usas `r` por serem herdáveis via resolveInheritance)
+    pageBreakBefore: r.pageBreakBefore ?? 'Auto',
+    keepLinesTogether: r.keepLinesTogether ?? false,
+    keepAllLinesTogether: r.keepAllLinesTogether ?? false,
+    keepWithNext: r.keepWithNext ?? 0,
+    keepFirstLines: r.keepFirstLines ?? 2,
+    keepLastLines: r.keepLastLines ?? 2,
+
     // resolve: expõe o objeto resolved para inspeção pelo style-mapper
     resolved: s.resolved ?? null,
   };
