@@ -110,6 +110,15 @@ export function generateThemeContent(mapped, meta = null) {
         textArgs.push(`tracking: ${trackPt}pt`);
       }
 
+      // Neutralização do default do motor: Typst faz heading Bold por padrão.
+      // InDesign tem Regular como padrão implícito.
+      if (s.fontStyle && s.fontStyle.toLowerCase().includes('bold')) {
+        textArgs.push(`weight: "bold"`);
+      } else {
+        textArgs.push(`weight: "regular"`);
+      }
+
+
       if (textArgs.length) lines.push(`  set text(${textArgs.join(', ')})`);
 
       // set par: leading quando disponível
@@ -126,10 +135,10 @@ export function generateThemeContent(mapped, meta = null) {
       // Conteúdo: H1 com pagebreak para página ímpar (recto) + centro; outros normal
       if (level === 1) {
         if (s.align === 'center') {
-          lines.push('  pagebreak(to: "odd")');
+          lines.push('  pagebreak(to: "odd", weak: true)');
           lines.push('  align(center, it.body)');
         } else {
-          lines.push('  pagebreak(to: "odd")');
+          lines.push('  pagebreak(to: "odd", weak: true)');
           lines.push('  it.body');
         }
       } else if (s.align === 'center') {

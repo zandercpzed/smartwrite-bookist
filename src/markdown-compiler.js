@@ -340,7 +340,7 @@ export function compileMarkdown(textDir, outputDir = './output', exclude = []) {
   });
 
 
-  const body = sections.join('\n\n// --- nova seção ---\n\n');
+  const body = sections.join('\n\n// --- nova seção ---\n#pagebreak(to: "odd", weak: true)\n\n');
 
   // Grava o arquivo de saída
   fs.mkdirSync(outputDir, { recursive: true });
