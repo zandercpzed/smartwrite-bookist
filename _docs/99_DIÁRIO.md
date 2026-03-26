@@ -51,4 +51,49 @@
 
 ---
 
+## 2026-03-26 — Sprint 2: Rosto, Sumário e Metadados
+
+**Participantes:** Zander + Agente
+
+**O que foi feito:**
+- Criado `book.yaml` por volume com metadados editoriais (título, autor, ISBN, colofão)
+- Implementados `src/book-meta-parser.js` e `src/book-assembler.js`
+- O `robo-render.js` agora gera `rosto.typ` (folha de rosto), `#outline()` (sumário automático) e `colofao.typ`
+- `theme-generator.js` atualizado com cabeçalho alternado (título na recto / heading corrente na verso) e rodapé numerado
+- **Fonte Cardo instalada** via Homebrew Cask (`font-cardo`) — resolveu warning de fonte
+
+**Decisões:**
+- `book.yaml` é a fonte de verdade editorial por volume (metadados mutáveis)
+- O IDML é a fonte de verdade de design (fontes, margens, estilos)
+- Fallback gracioso: sem `book.yaml`, o PDF é gerado sem rosto/sumário/colofão
+
+**Resultado:** PDF 293KB com rosto + sumário + corpo + colofão em 0.7s ✅
+
+---
+
+## 2026-03-26 — Sprint 3: Extração Completa do IDML
+
+**Participantes:** Zander + Agente
+
+**Ponto levantado pelo Zander:** a extração do IDML era parcial, volátil (só em memória) e não resolvia herança de estilos via `BasedOn`. Era o problema raiz de H2/H3/Footnotes terem `fontFamily: null`.
+
+**Decisão arquitetural (sem ADR formal, mas relevante):**
+- A extração IDML deve ser **completa** e **persistida** em JSON (`_templates/template miolo.idml.json`)
+- Este JSON é a **fonte de verdade visual** do template — versionado no git
+
+**O que foi feito:**
+- Criado `src/idml-extractor.js`: extrai 47 estilos de parágrafo, 8 de caractere, cores, fontes, variáveis, master pages e geometria
+- Resolução de herança `BasedOn` recursiva e transitiva (H3→H2→H1→Cardo)
+- `src/idml-parser.js` refundado como camada de compatibilidade com cache automático do JSON
+- Novo comando CLI: `node robo-render.js extract-idml`
+- `theme-generator.js` corrigido: H1 com `align(center)` + `leading:24pt` + `pagebreak(weak: true)`, H2 com `leading:14pt` via `resolved`
+
+**Outra questão levantada pelo Zander:** além do CJK, há outros scripts (cirílico, árabe RTL, devanagari, matemático) que precisam de tratamento. Registrado no backlog como item multi-script (font stack por `book.yaml`).
+
+**Resultado:** render em 1.0s, zero warnings, theme.typ fiel ao InDesign ✅
+
+**Commits:** `12a5d1e` (Sprint 2) · `28ab673` (Sprint 3 extractor) · `16e76ef` (theme fix)
+
+---
+
 _[Log em andamento. Cada sessão de trabalho deve ser documentada aqui antes do /eod.]_

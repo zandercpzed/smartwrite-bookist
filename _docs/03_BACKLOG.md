@@ -55,7 +55,16 @@
 
 ## 🔲 Sprint 3 — Casos de Borda ("As Dores")
 
-- [ ] Stress test de CJK: Pinyin tonal, itálicos e negritos misturados (ex: _Liǎng xiǎo'ér_)
+- [ ] **Suporte multi-script (font stack):** substituir o fallback genérico CJK por uma stack
+      de fontes tipada no `book.yaml` e/ou extraída do IDML:
+      - CJK (Hanzi, Kanji, Pinyin): Kozuka Mincho Pr6N (já no IDML JSON)
+      - Cirílico: Noto Serif
+      - Árabe / Hebraico (RTL): Noto Naskh Arabic + bloco `#set text(dir: rtl)` no compilador
+      - Devanagari / Sânscrito: Noto Serif Devanagari
+      - Matemático / IPA: STIX Two Math
+      - **Implementação:** `theme-generator.js` monta `font: (primária, …fallbacks)` a partir de
+        `book.yaml[fonts.fallbacks]` + fontes extraídas do IDML (`idml-extractor.json`)
+
 - [ ] Margens internas/externas espelhadas (sangria, bleed, crop marks)
 - [ ] Tabelas Markdown → Typst
 - [ ] Imagens `![alt](path)` → `#image(...)` Typst

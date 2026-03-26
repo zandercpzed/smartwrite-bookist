@@ -20,56 +20,66 @@ Ele extrai o design visual de um template `.idml` do InDesign, ingere o texto fo
 
 ## ✅ O que já foi feito
 
-- [x] `01_PRODUTO.md` — PRD completo com É/Não É, Faz/Não Faz, Entradas/Saídas, Portabilidade, Métricas
-- [x] `02_ROADMAP.md` e `03_BACKLOG.md` — Fases e tarefas definidas
-- [x] `_arquitetura/OSS_COMPARAVEIS.md` — Análise de 6 sistemas OSS com matriz de decisão
-- [x] `99_DIÁRIO.md` — Log de sessões iniciado
-- [x] Workflows `/sod`, `/eod`, `/eow` criados em `_agent/workflows/`
-- [x] 8 skills instaladas em `.agent/`
-- [x] **ADR-001 APROVADO** — Stack: Node.js (orquestrador) + Typst CLI (PDF) + Pandoc (EPUB)
-- [x] **ADR-002 APROVADO** — Estratégia IDML → Typst: unzipper + xml2js → theme.typ gerado automaticamente
-- [x] **ADR-003 APROVADO** — Pipeline Markdown: unified/remark (AST) → conversão para sintaxe Typst → livro.typ
-- [x] **Sprint 1 CONCLUÍDA** — Primeiro PDF e EPUB do Liezi gerados com sucesso
+### Sprint 1 — Primeiro PDF e EPUB (2026-03-25/26)
+- [x] Setup: Node.js ESM, Typst 0.14.2, Pandoc 3.9 instalados
+- [x] `src/idml-parser.js` — extrator IDML (Sprint 1, agora camada de compatibilidade)
+- [x] `src/style-mapper.js` — mapeamento semântico + conversão de unidades
+- [x] `src/theme-generator.js` — gerador de `theme.typ`
+- [x] `src/markdown-compiler.js` — AST remark → Typst
+- [x] `robo-render.js` — orquestrador CLI principal
+- **Resultado:** PDF 234KB + EPUB 42KB em 4.2s ✅
 
-### 🏆 Sprint 1 — Entregáveis (2026-03-26)
+### Sprint 2 — Rosto, Sumário e Metadados (2026-03-26)
+- [x] `book.yaml` por volume (título, autor, ISBN, colofão)
+- [x] `src/book-meta-parser.js` — lê book.yaml com defaults seguros
+- [x] `src/book-assembler.js` — gera `rosto.typ` e `colofao.typ`
+- [x] Cabeçalho alternado (título recto / heading verso) + rodapé numerado
+- [x] Folha de rosto + `#outline()` + colofão integrados no `livro.typ`
+- [x] Fonte Cardo instalada via `font-cardo` Homebrew Cask
+- **Resultado:** PDF 293KB em 0.7s, zero warnings ✅
 
-| Arquivo | O que faz |
-|---|---|
-| `package.json` | Setup do projeto Node.js (ESM) |
-| `src/idml-parser.js` | Extrai 47 estilos do `template miolo.idml` (traversal recursivo) |
-| `src/style-mapper.js` | Mapeia nomes reais IDML → roles Typst; converte pt→em/cm |
-| `src/theme-generator.js` | Gera `output/theme.typ` válido para Typst 0.14.2 |
-| `src/markdown-compiler.js` | AST remark → Typst (headings, negrito, itálico, footnotes, escape `#/@`) |
-| `robo-render.js` | Orquestrador CLI: `node robo-render.js render --vol "01. Liezi"` |
-
-**Resultado:** `01._Liezi_miolo.pdf` (234KB) + `01._Liezi.epub` (42KB) em **4.2s** ✅
+### Sprint 3 — Extração Completa do IDML (2026-03-26)
+- [x] `src/idml-extractor.js` (NOVO) — extrai TUDO do IDML:
+  - 47 estilos de parágrafo + 8 de caractere com herança `BasedOn` resolvida transitivamente
+  - Cores/swatches (Graphic.xml), Fontes (Fonts.xml), TextVariables, Languages
+  - Geometria de página + MasterSpread recto/verso
+- [x] `_templates/template miolo.idml.json` (62KB) — **fonte de verdade do design, versionada no git**
+- [x] `src/idml-parser.js` refundado como camada de compatibilidade com cache automático
+- [x] Novo comando: `node robo-render.js extract-idml`
+- [x] `theme-generator.js`: H1 com `align(center)` + `leading:24pt` + `pagebreak(weak: true)`, H2 com `leading:14pt`, H3 com Cardo transitivo
+- **Resultado:** render 1.0s, zero warnings, theme.typ fiel ao InDesign ✅
 
 ---
 
 ## 🚧 Onde Paramos
 
-**Fase atual:** Sprint 1 concluída. **Pronto para Sprint 2 — Rosto, Sumário e Metadados.**
+**Fase atual:** Sprint 3 concluída. **Pronto para Sprint 4 — Qualidade Editorial.**
+
+**Último commit:** `16e76ef` — fix(theme): H1 align:center+leading, H2/H3 leading via resolved, pagebreak fraco
 
 ---
 
-## ▶️ Próximos Passos (Sprint 2)
+## ▶️ Próximos Passos (Sprint 4 — Qualidade Editorial)
 
-1. **`book.yaml` parser** — frontmatter por volume (título, autor, ISBN, data)
-2. **Sumário automático** via `#outline()` no Typst
-3. **Folha de rosto** gerada a partir de `book.yaml`
-4. **Cabeçalho/rodapé de página** (título esquerda, número direita — recto/verso)
-5. **Colofão** com metadados editoriais
+1. **Font stack multi-script** — substituir o `fallback: true` genérico por uma stack tipada:
+   - CJK: Kozuka Mincho Pr6N (já no IDML JSON)
+   - Cirílico, Árabe RTL, Devanagari — declarados em `book.yaml[fonts.fallbacks]`
+2. **Epígrafe** — mapear `Epigraph and Dedication` do IDML → estilo específico no `theme.typ`
+3. **Ornamento HR** — `---` no Markdown → ornamento `✦` centralizado (em vez de `#line`)
+4. **DropCap** — primeira letra capitular após H1 via `state()` do Typst
+5. **Usar `resolved` nos estilos restantes** — Bibliography, Centered, Ornaments
 
 ---
 
 ## ⚠️ Cuidados e Decisões Pacíficas
 
-- **Stack APROVADA e FECHADA:** Node.js + Typst + Pandoc. Não reabrir esta discussão.
+- **Stack APROVADA e FECHADA:** Node.js + Typst + Pandoc. Não reabrir.
 - **Nome do projeto:** Smartwrite Bookist (parte da suite Smartwrite)
 - **Volumes ficam em `FASE I/`, `FASE II/`, `FASE III/`** — fora do repositório `_ robots/`
 - **NENHUM** estilo será definido em código — apenas extraído do IDML.
-- **NENHUM** texto editorial será editado pelo motor.
-- O motor deve funcionar nos 4 modos: CLI, Docker, API REST, Cloud Run/Firebase.
+- **`_templates/template miolo.idml.json`** é o artefato de extração — regenerar com `extract-idml` após mudança no InDesign.
+- A **herança `BasedOn`** é resolvida pelo `idml-extractor.js` — campo `resolved` contém valores com herança aplicada. O `idml-parser.js` usa `toLegacyStyle()` que prioriza `resolved`.
+- **RTL (árabe/hebraico):** requer `#set text(dir: rtl)` por bloco no `markdown-compiler.js` — Sprint 5+.
 - **Fail-Fast:** se build falhar uma vez, PARE e comunique.
 
 ---
@@ -79,19 +89,21 @@ Ele extrai o design visual de um template `.idml` do InDesign, ingere o texto fo
 | Arquivo | Papel |
 |---|---|
 | `_docs/01_PRODUTO.md` | PRD completo |
-| `_docs/02_ROADMAP.md` | 4 fases de desenvolvimento |
-| `_docs/03_BACKLOG.md` | Tarefas da Sprint 2 |
+| `_docs/03_BACKLOG.md` | Tarefas da Sprint 4 |
 | `_docs/99_DIÁRIO.md` | Memória estendida — log de decisões |
 | `_arquitetura/ADR-001_stack-tecnologica.md` | Stack aprovada ✅ |
-| `_arquitetura/ADR-002_idml-to-typst-theme.md` | Estratégia IDML ✅ |
-| `_arquitetura/ADR-003_markdown-pipeline.md` | Pipeline Markdown ✅ |
-| `_templates/template miolo.idml` | Template visual (source of truth do design) |
-| `src/idml-parser.js` | Extrator IDML → estilos normalizados |
+| `_templates/template miolo.idml` | Template visual |
+| `_templates/template miolo.idml.json` | **JSON extraído (62KB) — fonte de verdade do design** |
+| `src/idml-extractor.js` | Extração completa do IDML com BasedOn resolvido |
+| `src/idml-parser.js` | Camada de compatibilidade (delega ao extractor) |
 | `src/style-mapper.js` | Mapeamento semântico + conversão de unidades |
-| `src/theme-generator.js` | Gerador de theme.typ |
+| `src/theme-generator.js` | Gerador de theme.typ (H1 center, pagebreak, leadings) |
 | `src/markdown-compiler.js` | Compilador Markdown → Typst |
-| `robo-render.js` | Orquestrador CLI principal |
+| `src/book-meta-parser.js` | Lê book.yaml com defaults seguros |
+| `src/book-assembler.js` | Gera rosto.typ e colofao.typ |
+| `robo-render.js` | Orquestrador CLI + comando extract-idml |
+| `FASE I/01. Liezi/book.yaml` | Metadados editoriais do volume piloto |
 
 ---
 
-*Atualizado em: 2026-03-26 | Sprint 1 concluída | Próxima sessão: Sprint 2 — Rosto, Sumário e Metadados*
+*Atualizado em: 2026-03-26 | Sprint 3 concluída | Próxima sessão: Sprint 4 — Qualidade Editorial*
