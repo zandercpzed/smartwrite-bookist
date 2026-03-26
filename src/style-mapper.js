@@ -121,9 +121,14 @@ export function mapStyles(parsed) {
           style.firstLineIndent != null
             ? `${ptToEm(style.firstLineIndent, fontSizePt)}em`
             : null,
-        align: mapJustification(style.justification), // 'left', 'justify', 'center', etc. ou null
+        align: mapJustification(style.justification),
         fontFamily: style.fontFamily,
         fontStyle: style.fontStyle,
+        // Capitalização: SmallCaps / AllCaps — do IDML (via resolved ou direto)
+        capitalization: style.capitalization || style.resolved?.capitalization || null,
+        // Tracking em 1/1000 de em (IDML) → convertido para Typst em (tracking/1000em)
+        tracking: style.tracking != null ? style.tracking
+                  : (style.resolved?.tracking != null ? style.resolved.tracking : null),
       },
     };
 

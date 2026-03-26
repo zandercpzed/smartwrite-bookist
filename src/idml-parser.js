@@ -37,6 +37,12 @@ function toLegacyStyle(s) {
     justification: r.justification ?? null,
     fontFamily: r.fontFamily ?? null,
     fontStyle: r.fontStyle ?? null,
+    // capitalization: prefere o valor direto do estilo (não herdado), depois o resolved
+    capitalization: s.capitalization ?? r.capitalization ?? null,
+    // tracking: prefere resolved (herança aplicada), depois direto
+    tracking: r.tracking ?? s.tracking ?? null,
+    // resolve: expõe o objeto resolved para inspeção pelo style-mapper
+    resolved: s.resolved ?? null,
   };
 }
 

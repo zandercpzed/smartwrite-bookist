@@ -90,10 +90,26 @@ export function generateThemeContent(mapped, meta = null) {
       lines.push(`// --- ${cleanName} (heading level ${level}) ---`);
       lines.push(`#show heading.where(level: ${level}): it => {`);
 
-      // set text: font e size
+      // set text: font, size, SmallCaps, tracking (letter-spacing)
       const textArgs = [];
       if (s.fontFamily) textArgs.push(`font: "${s.fontFamily}"`);
       if (s.fontSize) textArgs.push(`size: ${s.fontSize}`);
+
+      // SmallCaps via OpenType feature — IDML "SmallCaps" → Typst features: ("smcp",)
+      if (s.capitalization === 'SmallCaps') {
+        textArgs.push('features: ("smcp",)');
+      } else if (s.capitalization === 'AllCaps') {
+        textArgs.push('features: ("c2sc", "smcp")');  // AllCaps via OT
+      }
+
+      // Tracking: IDML usa 1/1000 de em. Typst usa pt diretamente.
+      // tracking/1000 * fontSize = valor em pt (ex: 150/1000 * 10pt = 1.5pt)
+      if (s.tracking != null && s.tracking !== 0) {
+        const fontSizePt = parseFloat(s.fontSize || '10') || 10;
+        const trackPt = ((s.tracking / 1000) * fontSizePt).toFixed(3);
+        textArgs.push(`tracking: ${trackPt}pt`);
+      }
+
       if (textArgs.length) lines.push(`  set text(${textArgs.join(', ')})`);
 
       // set par: leading quando disponível
